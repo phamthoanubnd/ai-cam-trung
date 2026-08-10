@@ -1,2 +1,11 @@
 
 .answer-meta{display:block;margin-top:7px;color:#8495a5;font-size:10px}
+
+.followup-box{margin:8px 0 16px 44px;max-width:850px}
+.followup-title{font-size:12px;font-weight:800;color:#63798e;margin:0 0 7px}
+.followup-actions{display:flex;gap:7px;flex-wrap:wrap}
+.followup-btn{border:1px solid #c9dceb;background:#fff;color:#0b5cab;border-radius:18px;padding:8px 11px;cursor:pointer;font-size:12px;text-align:left}
+.followup-btn:hover{background:#edf6ff;border-color:#9ec2e0}
+.clarification-box{background:#f7fbff;border:1px solid #dbe9f4;border-radius:12px;padding:11px 12px}
+.answer-meta{display:block;margin-top:7px;color:#8495a5;font-size:10px}
+@media(max-width:800px){.followup-box{margin-left:0}.followup-btn{font-size:11px;padding:7px 9px}}
