@@ -1,0 +1,114 @@
+[
+  {
+    "id": "FAQ001",
+    "category": "Thông tin chung",
+    "question": "UBND xã Cẩm Trung làm việc vào thời gian nào?",
+    "answer": "UBND xã Cẩm Trung thực hiện thời gian làm việc theo quy định của cơ quan hành chính nhà nước. Khi cần giao dịch, anh/chị nên kiểm tra thông báo hoặc liên hệ UBND xã để xác nhận thời gian làm việc hiện hành.",
+    "keywords": [
+      "giờ làm việc",
+      "thời gian làm việc",
+      "ubnd xã"
+    ]
+  },
+  {
+    "id": "FAQ002",
+    "category": "Một cửa",
+    "question": "Bộ phận Một cửa của xã làm những việc gì?",
+    "answer": "Bộ phận Một cửa là nơi tiếp nhận, hướng dẫn và trả kết quả giải quyết thủ tục hành chính thuộc thẩm quyền. Với từng thủ tục cụ thể, anh/chị có thể hỏi AI Cẩm Trung tên thủ tục để được hướng dẫn thành phần hồ sơ, trình tự và cách thực hiện.",
+    "keywords": [
+      "một cửa",
+      "bộ phận một cửa",
+      "thủ tục hành chính"
+    ]
+  },
+  {
+    "id": "FAQ003",
+    "category": "Hộ tịch",
+    "question": "Đăng ký khai sinh cần những giấy tờ gì?",
+    "answer": "Hồ sơ đăng ký khai sinh phụ thuộc trường hợp cụ thể và quy định hiện hành. Anh/chị có thể cung cấp trường hợp (khai sinh trong hạn, đăng ký muộn, có yếu tố nước ngoài...) để được hướng dẫn đúng hơn. Thông tin chính thức cần được đối chiếu với thủ tục hành chính hiện hành.",
+    "keywords": [
+      "khai sinh",
+      "đăng ký khai sinh",
+      "giấy khai sinh"
+    ]
+  },
+  {
+    "id": "FAQ004",
+    "category": "Dịch vụ công",
+    "question": "Tôi muốn nộp hồ sơ trực tuyến thì làm thế nào?",
+    "answer": "Anh/chị cần xác định đúng thủ tục, chuẩn bị thành phần hồ sơ điện tử và thực hiện đăng nhập trên Cổng Dịch vụ công theo hướng dẫn. Nếu chị/anh cho biết tên thủ tục, AI Cẩm Trung có thể hướng dẫn từng bước ở phiên bản tiếp theo.",
+    "keywords": [
+      "dịch vụ công",
+      "nộp trực tuyến",
+      "hồ sơ trực tuyến"
+    ]
+  },
+  {
+    "id": "FAQ005",
+    "category": "Phản ánh",
+    "question": "Tôi muốn phản ánh một vấn đề trên địa bàn xã thì làm thế nào?",
+    "answer": "Anh/chị nên cung cấp nội dung phản ánh, địa điểm xảy ra, thời gian và hình ảnh/tài liệu liên quan nếu có. Chatbot có thể hướng dẫn kênh tiếp nhận phù hợp; việc tiếp nhận và xử lý chính thức thuộc cơ quan có thẩm quyền.",
+    "keywords": [
+      "phản ánh",
+      "kiến nghị",
+      "phản ánh hiện trường"
+    ]
+  },
+  {
+    "id": "FAQ006",
+    "category": "Giáo dục",
+    "question": "Trên địa bàn xã Cẩm Trung có những trường học nào?",
+    "answer": "Kho dữ liệu thử nghiệm cần được cập nhật danh sách trường học chính thức của xã Cẩm Trung. Khi dữ liệu được phê duyệt, Chatbot sẽ có thể cung cấp tên trường, địa chỉ, cấp học và thông tin liên hệ công khai.",
+    "keywords": [
+      "trường học",
+      "giáo dục",
+      "trường"
+    ]
+  },
+  {
+    "id": "FAQ007",
+    "category": "Kỹ năng số",
+    "question": "Tôi muốn sử dụng i-Hà Tĩnh thì bắt đầu từ đâu?",
+    "answer": "Anh/chị cần cài đặt ứng dụng i-Hà Tĩnh, đăng ký/đăng nhập theo hướng dẫn và sử dụng các chức năng phù hợp. Đối với từng chức năng như phản ánh hiện trường hoặc góp ý, kiến nghị, Chatbot có thể hướng dẫn theo tài liệu chính thức được xã cập nhật.",
+    "keywords": [
+      "i-hà tĩnh",
+      "i hà tĩnh",
+      "ứng dụng"
+    ]
+  },
+  {
+    "id": "FAQ008",
+    "category": "Doanh nghiệp",
+    "question": "Hộ kinh doanh cần làm thủ tục gì?",
+    "answer": "Thủ tục đăng ký hộ kinh doanh cần được xác định theo quy định hiện hành và trường hợp cụ thể. Anh/chị có thể hỏi tên nội dung cần thực hiện như đăng ký mới, thay đổi nội dung hoặc chấm dứt hoạt động để được hướng dẫn.",
+    "keywords": [
+      "hộ kinh doanh",
+      "đăng ký hộ kinh doanh",
+      "kinh doanh"
+    ]
+  },
+  {
+    "id": "FAQ009",
+    "category": "Đất đai",
+    "question": "Tôi muốn hỏi về thủ tục đất đai thì liên hệ đâu?",
+    "answer": "Đối với thủ tục đất đai, anh/chị có thể bắt đầu từ Bộ phận Một cửa và bộ phận chuyên môn có liên quan để được xác định đúng thủ tục. Chatbot chỉ cung cấp thông tin tham khảo từ dữ liệu đã được phê duyệt và không tự kết luận hồ sơ đất đai.",
+    "keywords": [
+      "đất đai",
+      "thủ tục đất",
+      "sổ đỏ",
+      "giấy chứng nhận"
+    ]
+  },
+  {
+    "id": "FAQ010",
+    "category": "An sinh xã hội",
+    "question": "Tôi muốn hỏi về chính sách an sinh xã hội.",
+    "answer": "AI Cẩm Trung có thể cung cấp thông tin về các chính sách đã được xã cập nhật và phê duyệt. Với trường hợp cá nhân cần xác định điều kiện hưởng hoặc mức hưởng, Chatbot sẽ hướng dẫn liên hệ bộ phận chuyên môn để được thẩm định.",
+    "keywords": [
+      "an sinh",
+      "trợ cấp",
+      "chính sách xã hội",
+      "hộ nghèo"
+    ]
+  }
+]
