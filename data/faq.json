@@ -3,18 +3,51 @@
     "id": "FAQ001",
     "category": "Thông tin chung",
     "question": "UBND xã Cẩm Trung làm việc vào thời gian nào?",
-    "answer": "UBND xã Cẩm Trung thực hiện thời gian làm việc theo quy định của cơ quan hành chính nhà nước. Khi cần giao dịch, anh/chị nên kiểm tra thông báo hoặc liên hệ UBND xã để xác nhận thời gian làm việc hiện hành.",
+    "answer": "UBND xã Cẩm Trung thực hiện thời gian làm việc theo quy định hiện hành của cơ quan hành chính nhà nước. Người dân nên kiểm tra thông báo mới nhất của UBND xã hoặc liên hệ Bộ phận Một cửa để xác nhận thời gian giao dịch cụ thể.",
     "keywords": [
       "giờ làm việc",
       "thời gian làm việc",
-      "ubnd xã"
+      "UBND xã"
     ]
   },
   {
     "id": "FAQ002",
-    "category": "Một cửa",
+    "category": "Thông tin chung",
+    "question": "Trụ sở UBND xã Cẩm Trung ở đâu?",
+    "answer": "Thông tin địa chỉ trụ sở UBND xã Cẩm Trung cần được cập nhật theo thông báo chính thức của xã. Chatbot chỉ cung cấp địa chỉ sau khi dữ liệu đã được cán bộ phụ trách phê duyệt.",
+    "keywords": [
+      "địa chỉ",
+      "trụ sở",
+      "UBND xã"
+    ]
+  },
+  {
+    "id": "FAQ003",
+    "category": "Thông tin chung",
+    "question": "Tôi muốn liên hệ UBND xã Cẩm Trung bằng cách nào?",
+    "answer": "Người dân có thể liên hệ UBND xã qua Bộ phận Một cửa hoặc các kênh liên hệ chính thức được xã công khai. Không gửi mật khẩu, mã OTP hoặc thông tin bí mật qua Chatbot.",
+    "keywords": [
+      "liên hệ",
+      "điện thoại",
+      "UBND xã"
+    ]
+  },
+  {
+    "id": "FAQ004",
+    "category": "Thông tin chung",
+    "question": "UBND xã Cẩm Trung có những bộ phận nào?",
+    "answer": "UBND xã có các bộ phận chuyên môn và Bộ phận Một cửa theo cơ cấu tổ chức hiện hành. Chatbot sẽ cung cấp danh sách, chức năng và đầu mối liên hệ sau khi dữ liệu tổ chức được cập nhật và phê duyệt.",
+    "keywords": [
+      "bộ phận",
+      "cơ cấu",
+      "phòng ban"
+    ]
+  },
+  {
+    "id": "FAQ005",
+    "category": "Thông tin chung",
     "question": "Bộ phận Một cửa của xã làm những việc gì?",
-    "answer": "Bộ phận Một cửa là nơi tiếp nhận, hướng dẫn và trả kết quả giải quyết thủ tục hành chính thuộc thẩm quyền. Với từng thủ tục cụ thể, anh/chị có thể hỏi AI Cẩm Trung tên thủ tục để được hướng dẫn thành phần hồ sơ, trình tự và cách thực hiện.",
+    "answer": "Bộ phận Một cửa thực hiện hướng dẫn, tiếp nhận hồ sơ, chuyển xử lý và trả kết quả giải quyết thủ tục hành chính theo quy định. Với từng thủ tục, người dân nên kiểm tra thành phần hồ sơ và cơ quan có thẩm quyền cụ thể.",
     "keywords": [
       "một cửa",
       "bộ phận một cửa",
@@ -22,21 +55,66 @@
     ]
   },
   {
-    "id": "FAQ003",
-    "category": "Hộ tịch",
-    "question": "Đăng ký khai sinh cần những giấy tờ gì?",
-    "answer": "Hồ sơ đăng ký khai sinh phụ thuộc trường hợp cụ thể và quy định hiện hành. Anh/chị có thể cung cấp trường hợp (khai sinh trong hạn, đăng ký muộn, có yếu tố nước ngoài...) để được hướng dẫn đúng hơn. Thông tin chính thức cần được đối chiếu với thủ tục hành chính hiện hành.",
+    "id": "FAQ006",
+    "category": "Thông tin chung",
+    "question": "Tôi có thể hỏi Chatbot Cẩm Trung những vấn đề gì?",
+    "answer": "Chatbot AI Cẩm Trung được thiết kế để hỗ trợ thông tin về thủ tục hành chính, dịch vụ công, thông tin địa phương, giáo dục, chuyển đổi số, chính sách công khai và các nội dung khác đã được xã đưa vào kho dữ liệu.",
     "keywords": [
-      "khai sinh",
-      "đăng ký khai sinh",
-      "giấy khai sinh"
+      "chatbot",
+      "hỏi gì",
+      "hỗ trợ"
     ]
   },
   {
-    "id": "FAQ004",
+    "id": "FAQ007",
+    "category": "Thông tin chung",
+    "question": "Chatbot có thay thế cán bộ giải quyết hồ sơ không?",
+    "answer": "Không. Chatbot chỉ hỗ trợ cung cấp thông tin và hướng dẫn. Việc tiếp nhận, thẩm định, phê duyệt và giải quyết hồ sơ thuộc cơ quan, người có thẩm quyền theo quy định.",
+    "keywords": [
+      "thay thế cán bộ",
+      "giải quyết hồ sơ",
+      "thẩm quyền"
+    ]
+  },
+  {
+    "id": "FAQ008",
+    "category": "Thông tin chung",
+    "question": "Thông tin Chatbot cung cấp có phải là quyết định chính thức không?",
+    "answer": "Không. Câu trả lời của Chatbot là thông tin hỗ trợ. Khi cần xác định quyền, nghĩa vụ, điều kiện hoặc kết quả giải quyết hồ sơ, người dân cần đối chiếu văn bản và liên hệ cơ quan có thẩm quyền.",
+    "keywords": [
+      "thông tin chính thức",
+      "quyết định",
+      "đối chiếu"
+    ]
+  },
+  {
+    "id": "FAQ009",
+    "category": "Thông tin chung",
+    "question": "Nếu Chatbot không biết câu trả lời thì tôi phải làm gì?",
+    "answer": "Anh/chị có thể diễn đạt câu hỏi cụ thể hơn hoặc liên hệ Bộ phận Một cửa/cán bộ chuyên môn. Những vấn đề chưa có dữ liệu chính thức không được Chatbot tự suy đoán hoặc bịa thông tin.",
+    "keywords": [
+      "không biết",
+      "chưa có dữ liệu",
+      "liên hệ cán bộ"
+    ]
+  },
+  {
+    "id": "FAQ010",
+    "category": "Thông tin chung",
+    "question": "Tôi có được gửi thông tin cá nhân cho Chatbot không?",
+    "answer": "Không nên gửi các thông tin nhạy cảm như mật khẩu, mã OTP, số tài khoản, dữ liệu định danh hoặc hồ sơ cá nhân không cần thiết. Chỉ cung cấp thông tin tối thiểu khi có hướng dẫn chính thức.",
+    "keywords": [
+      "thông tin cá nhân",
+      "bảo mật",
+      "OTP",
+      "mật khẩu"
+    ]
+  },
+  {
+    "id": "FAQ011",
     "category": "Dịch vụ công",
     "question": "Tôi muốn nộp hồ sơ trực tuyến thì làm thế nào?",
-    "answer": "Anh/chị cần xác định đúng thủ tục, chuẩn bị thành phần hồ sơ điện tử và thực hiện đăng nhập trên Cổng Dịch vụ công theo hướng dẫn. Nếu chị/anh cho biết tên thủ tục, AI Cẩm Trung có thể hướng dẫn từng bước ở phiên bản tiếp theo.",
+    "answer": "Anh/chị cần xác định đúng thủ tục, chuẩn bị hồ sơ điện tử và đăng nhập Cổng Dịch vụ công theo hướng dẫn. Với từng thủ tục cụ thể, hãy hỏi tên thủ tục để được hướng dẫn chi tiết hơn.",
     "keywords": [
       "dịch vụ công",
       "nộp trực tuyến",
@@ -44,54 +122,219 @@
     ]
   },
   {
-    "id": "FAQ005",
-    "category": "Phản ánh",
-    "question": "Tôi muốn phản ánh một vấn đề trên địa bàn xã thì làm thế nào?",
-    "answer": "Anh/chị nên cung cấp nội dung phản ánh, địa điểm xảy ra, thời gian và hình ảnh/tài liệu liên quan nếu có. Chatbot có thể hướng dẫn kênh tiếp nhận phù hợp; việc tiếp nhận và xử lý chính thức thuộc cơ quan có thẩm quyền.",
+    "id": "FAQ012",
+    "category": "Dịch vụ công",
+    "question": "Tôi có thể theo dõi tình trạng hồ sơ trực tuyến không?",
+    "answer": "Có, đối với hồ sơ được tiếp nhận trên hệ thống dịch vụ công có chức năng tra cứu, người dân có thể theo dõi trạng thái xử lý bằng thông tin tra cứu được hệ thống cung cấp.",
     "keywords": [
-      "phản ánh",
-      "kiến nghị",
-      "phản ánh hiện trường"
+      "tra cứu hồ sơ",
+      "tình trạng hồ sơ",
+      "trực tuyến"
     ]
   },
   {
-    "id": "FAQ006",
-    "category": "Giáo dục",
-    "question": "Trên địa bàn xã Cẩm Trung có những trường học nào?",
-    "answer": "Kho dữ liệu thử nghiệm cần được cập nhật danh sách trường học chính thức của xã Cẩm Trung. Khi dữ liệu được phê duyệt, Chatbot sẽ có thể cung cấp tên trường, địa chỉ, cấp học và thông tin liên hệ công khai.",
+    "id": "FAQ013",
+    "category": "Dịch vụ công",
+    "question": "Nộp hồ sơ trực tuyến có cần đến UBND xã không?",
+    "answer": "Tùy thủ tục. Một số thủ tục có thể thực hiện trực tuyến toàn trình hoặc một phần; một số trường hợp vẫn cần đối chiếu bản gốc, nhận kết quả hoặc thực hiện bước trực tiếp theo quy định.",
     "keywords": [
-      "trường học",
-      "giáo dục",
-      "trường"
+      "đến UBND",
+      "trực tuyến toàn trình",
+      "trực tiếp"
     ]
   },
   {
-    "id": "FAQ007",
-    "category": "Kỹ năng số",
-    "question": "Tôi muốn sử dụng i-Hà Tĩnh thì bắt đầu từ đâu?",
-    "answer": "Anh/chị cần cài đặt ứng dụng i-Hà Tĩnh, đăng ký/đăng nhập theo hướng dẫn và sử dụng các chức năng phù hợp. Đối với từng chức năng như phản ánh hiện trường hoặc góp ý, kiến nghị, Chatbot có thể hướng dẫn theo tài liệu chính thức được xã cập nhật.",
+    "id": "FAQ014",
+    "category": "Dịch vụ công",
+    "question": "Tôi không biết thủ tục của mình thuộc lĩnh vực nào thì làm sao?",
+    "answer": "Anh/chị hãy mô tả nhu cầu cụ thể, ví dụ đăng ký khai sinh, chứng thực giấy tờ, đất đai, hộ kinh doanh hoặc chính sách xã hội. Chatbot sẽ giúp xác định nhóm thủ tục phù hợp nếu dữ liệu đã có.",
     "keywords": [
-      "i-hà tĩnh",
-      "i hà tĩnh",
-      "ứng dụng"
+      "lĩnh vực",
+      "xác định thủ tục",
+      "thủ tục nào"
     ]
   },
   {
-    "id": "FAQ008",
-    "category": "Doanh nghiệp",
-    "question": "Hộ kinh doanh cần làm thủ tục gì?",
-    "answer": "Thủ tục đăng ký hộ kinh doanh cần được xác định theo quy định hiện hành và trường hợp cụ thể. Anh/chị có thể hỏi tên nội dung cần thực hiện như đăng ký mới, thay đổi nội dung hoặc chấm dứt hoạt động để được hướng dẫn.",
+    "id": "FAQ015",
+    "category": "Dịch vụ công",
+    "question": "Tôi cần chuẩn bị hồ sơ điện tử như thế nào?",
+    "answer": "Hồ sơ điện tử cần được tạo hoặc số hóa theo yêu cầu của từng thủ tục. Chỉ tải lên các giấy tờ được yêu cầu, bảo đảm hình ảnh hoặc tệp rõ ràng, đúng định dạng và còn giá trị sử dụng.",
     "keywords": [
-      "hộ kinh doanh",
-      "đăng ký hộ kinh doanh",
-      "kinh doanh"
+      "hồ sơ điện tử",
+      "scan",
+      "tệp hồ sơ"
     ]
   },
   {
-    "id": "FAQ009",
+    "id": "FAQ016",
+    "category": "Dịch vụ công",
+    "question": "Tôi có thể nhờ người khác nộp hồ sơ hộ không?",
+    "answer": "Việc ủy quyền hoặc nộp hồ sơ thay phụ thuộc từng thủ tục và quy định hiện hành. Người dân cần kiểm tra yêu cầu về giấy ủy quyền, giấy tờ của người nộp thay và các điều kiện liên quan.",
+    "keywords": [
+      "nộp hộ",
+      "ủy quyền",
+      "người khác"
+    ]
+  },
+  {
+    "id": "FAQ017",
+    "category": "Dịch vụ công",
+    "question": "Nếu hồ sơ bị yêu cầu bổ sung thì tôi phải làm gì?",
+    "answer": "Anh/chị cần đọc rõ nội dung yêu cầu bổ sung trên hệ thống hoặc thông báo của cơ quan giải quyết, sau đó bổ sung đúng thành phần và thời hạn được yêu cầu. Nếu chưa rõ, hãy liên hệ Bộ phận Một cửa.",
+    "keywords": [
+      "bổ sung hồ sơ",
+      "hồ sơ thiếu",
+      "yêu cầu bổ sung"
+    ]
+  },
+  {
+    "id": "FAQ018",
+    "category": "Dịch vụ công",
+    "question": "Nếu hồ sơ giải quyết chậm thì tôi liên hệ ai?",
+    "answer": "Anh/chị có thể kiểm tra trạng thái hồ sơ trên hệ thống và liên hệ Bộ phận Một cửa để được kiểm tra nguyên nhân, thời hạn xử lý và hướng dẫn tiếp theo.",
+    "keywords": [
+      "hồ sơ chậm",
+      "quá hạn",
+      "liên hệ"
+    ]
+  },
+  {
+    "id": "FAQ019",
+    "category": "Dịch vụ công",
+    "question": "Tôi có được nhận giấy hẹn khi nộp hồ sơ không?",
+    "answer": "Tùy phương thức và thủ tục, hệ thống hoặc cơ quan tiếp nhận sẽ cung cấp thông tin tiếp nhận, mã hồ sơ hoặc giấy hẹn theo quy định. Người dân nên lưu lại mã hồ sơ để thuận tiện tra cứu.",
+    "keywords": [
+      "giấy hẹn",
+      "mã hồ sơ",
+      "tiếp nhận"
+    ]
+  },
+  {
+    "id": "FAQ020",
+    "category": "Dịch vụ công",
+    "question": "Tôi muốn biết phí và lệ phí của một thủ tục thì hỏi ở đâu?",
+    "answer": "Phí, lệ phí phụ thuộc từng thủ tục và quy định hiện hành. Chatbot chỉ cung cấp mức phí khi có dữ liệu chính thức đã được cập nhật; nếu chưa có, người dân cần xác nhận với Bộ phận Một cửa.",
+    "keywords": [
+      "phí",
+      "lệ phí",
+      "chi phí"
+    ]
+  },
+  {
+    "id": "FAQ021",
+    "category": "Hộ tịch",
+    "question": "Đăng ký khai sinh cần những giấy tờ gì?",
+    "answer": "Thành phần hồ sơ đăng ký khai sinh phụ thuộc trường hợp cụ thể và quy định hiện hành. Người dân cần cung cấp tình huống như đăng ký trong hạn, đăng ký muộn hoặc có yếu tố nước ngoài để được hướng dẫn đúng trường hợp.",
+    "keywords": [
+      "khai sinh",
+      "đăng ký khai sinh",
+      "giấy khai sinh"
+    ]
+  },
+  {
+    "id": "FAQ022",
+    "category": "Hộ tịch",
+    "question": "Đăng ký khai sinh cho trẻ mới sinh ở đâu?",
+    "answer": "Việc đăng ký khai sinh được thực hiện tại cơ quan đăng ký hộ tịch có thẩm quyền theo quy định. Người dân cư trú tại Cẩm Trung có thể liên hệ Bộ phận Một cửa để được xác định nơi tiếp nhận phù hợp.",
+    "keywords": [
+      "khai sinh cho trẻ",
+      "trẻ mới sinh",
+      "hộ tịch"
+    ]
+  },
+  {
+    "id": "FAQ023",
+    "category": "Hộ tịch",
+    "question": "Đăng ký khai tử cần những giấy tờ gì?",
+    "answer": "Hồ sơ đăng ký khai tử phụ thuộc trường hợp cụ thể. Người dân nên chuẩn bị giấy tờ chứng minh sự kiện chết theo quy định và liên hệ Bộ phận Một cửa để được hướng dẫn chính xác.",
+    "keywords": [
+      "khai tử",
+      "đăng ký khai tử",
+      "giấy báo tử"
+    ]
+  },
+  {
+    "id": "FAQ024",
+    "category": "Hộ tịch",
+    "question": "Tôi muốn đăng ký kết hôn cần chuẩn bị gì?",
+    "answer": "Hồ sơ đăng ký kết hôn được thực hiện theo quy định về hộ tịch và tình trạng hôn nhân. Hai bên cần đáp ứng điều kiện kết hôn và chuẩn bị giấy tờ theo thủ tục hiện hành.",
+    "keywords": [
+      "kết hôn",
+      "đăng ký kết hôn",
+      "hộ tịch"
+    ]
+  },
+  {
+    "id": "FAQ025",
+    "category": "Hộ tịch",
+    "question": "Tôi muốn xin bản sao giấy tờ hộ tịch thì làm thế nào?",
+    "answer": "Anh/chị có thể yêu cầu cấp bản sao trích lục hộ tịch theo quy định. Hãy xác định loại giấy tờ cần cấp bản sao để được hướng dẫn nơi nộp hồ sơ và thành phần hồ sơ.",
+    "keywords": [
+      "bản sao hộ tịch",
+      "trích lục",
+      "cấp bản sao"
+    ]
+  },
+  {
+    "id": "FAQ026",
+    "category": "Hộ tịch",
+    "question": "Tôi muốn thay đổi hoặc cải chính hộ tịch thì làm thế nào?",
+    "answer": "Thay đổi, cải chính hộ tịch chỉ được thực hiện trong các trường hợp pháp luật cho phép. Người dân cần cung cấp nội dung muốn thay đổi và giấy tờ chứng minh để cơ quan có thẩm quyền hướng dẫn.",
+    "keywords": [
+      "cải chính hộ tịch",
+      "thay đổi hộ tịch",
+      "hộ tịch"
+    ]
+  },
+  {
+    "id": "FAQ027",
+    "category": "Chứng thực",
+    "question": "Tôi muốn chứng thực bản sao từ bản chính thì làm thế nào?",
+    "answer": "Người dân mang bản chính và bản sao cần chứng thực đến cơ quan có thẩm quyền hoặc thực hiện theo hình thức được pháp luật cho phép. Cơ quan chứng thực sẽ kiểm tra bản chính trước khi thực hiện.",
+    "keywords": [
+      "chứng thực",
+      "bản sao",
+      "bản chính"
+    ]
+  },
+  {
+    "id": "FAQ028",
+    "category": "Chứng thực",
+    "question": "Chứng thực chữ ký cần giấy tờ gì?",
+    "answer": "Người yêu cầu chứng thực chữ ký cần xuất trình giấy tờ tùy thân hợp lệ và văn bản cần chứng thực theo quy định. Trường hợp cụ thể nên được kiểm tra tại Bộ phận Một cửa.",
+    "keywords": [
+      "chứng thực chữ ký",
+      "chữ ký",
+      "giấy tờ tùy thân"
+    ]
+  },
+  {
+    "id": "FAQ029",
+    "category": "Chứng thực",
+    "question": "Tôi có thể chứng thực hợp đồng, giao dịch tại xã không?",
+    "answer": "Thẩm quyền chứng thực hợp đồng, giao dịch phụ thuộc loại giao dịch và quy định pháp luật. Người dân nên cung cấp tên giao dịch cụ thể để được xác định cơ quan có thẩm quyền.",
+    "keywords": [
+      "hợp đồng",
+      "giao dịch",
+      "chứng thực hợp đồng"
+    ]
+  },
+  {
+    "id": "FAQ030",
+    "category": "Hộ tịch",
+    "question": "Tôi cần xác nhận tình trạng hôn nhân thì làm thế nào?",
+    "answer": "Giấy xác nhận tình trạng hôn nhân được cấp theo thủ tục hộ tịch hiện hành. Người dân cần thực hiện theo hướng dẫn của cơ quan đăng ký hộ tịch có thẩm quyền và cung cấp thông tin cần thiết.",
+    "keywords": [
+      "tình trạng hôn nhân",
+      "xác nhận độc thân",
+      "hộ tịch"
+    ]
+  },
+  {
+    "id": "FAQ031",
     "category": "Đất đai",
     "question": "Tôi muốn hỏi về thủ tục đất đai thì liên hệ đâu?",
-    "answer": "Đối với thủ tục đất đai, anh/chị có thể bắt đầu từ Bộ phận Một cửa và bộ phận chuyên môn có liên quan để được xác định đúng thủ tục. Chatbot chỉ cung cấp thông tin tham khảo từ dữ liệu đã được phê duyệt và không tự kết luận hồ sơ đất đai.",
+    "answer": "Người dân có thể bắt đầu tại Bộ phận Một cửa để xác định đúng thủ tục và cơ quan có thẩm quyền. Chatbot không tự kết luận quyền sử dụng đất hoặc tính pháp lý của hồ sơ cá nhân.",
     "keywords": [
       "đất đai",
       "thủ tục đất",
@@ -100,15 +343,767 @@
     ]
   },
   {
-    "id": "FAQ010",
+    "id": "FAQ032",
+    "category": "Đất đai",
+    "question": "Tôi muốn cấp giấy chứng nhận quyền sử dụng đất lần đầu thì làm thế nào?",
+    "answer": "Thủ tục cấp giấy chứng nhận lần đầu phụ thuộc nguồn gốc, hiện trạng sử dụng đất và hồ sơ của từng trường hợp. Người dân cần liên hệ Bộ phận Một cửa để được hướng dẫn thành phần hồ sơ và trình tự theo quy định hiện hành.",
+    "keywords": [
+      "cấp sổ đỏ",
+      "giấy chứng nhận lần đầu",
+      "đất đai"
+    ]
+  },
+  {
+    "id": "FAQ033",
+    "category": "Đất đai",
+    "question": "Tôi muốn chuyển nhượng quyền sử dụng đất cần làm gì?",
+    "answer": "Chuyển nhượng quyền sử dụng đất phải đáp ứng điều kiện pháp luật và thực hiện các bước liên quan đến hợp đồng, nghĩa vụ tài chính và đăng ký biến động. Người dân nên được cơ quan chuyên môn hoặc tổ chức hành nghề có thẩm quyền hướng dẫn theo hồ sơ cụ thể.",
+    "keywords": [
+      "chuyển nhượng đất",
+      "mua bán đất",
+      "đăng ký biến động"
+    ]
+  },
+  {
+    "id": "FAQ034",
+    "category": "Đất đai",
+    "question": "Tôi muốn tách thửa đất thì cần điều kiện gì?",
+    "answer": "Điều kiện tách thửa phụ thuộc quy định pháp luật và quy định của địa phương tại thời điểm thực hiện. Chatbot chỉ cung cấp điều kiện khi kho dữ liệu đã được cập nhật văn bản hiện hành; trường hợp cụ thể cần được cơ quan chuyên môn xác nhận.",
+    "keywords": [
+      "tách thửa",
+      "điều kiện tách thửa",
+      "đất"
+    ]
+  },
+  {
+    "id": "FAQ035",
+    "category": "Đất đai",
+    "question": "Tôi muốn chuyển mục đích sử dụng đất thì làm thế nào?",
+    "answer": "Chuyển mục đích sử dụng đất phụ thuộc loại đất, quy hoạch, kế hoạch sử dụng đất và điều kiện pháp luật. Người dân cần liên hệ cơ quan có thẩm quyền để được kiểm tra hồ sơ và điều kiện cụ thể.",
+    "keywords": [
+      "chuyển mục đích",
+      "sử dụng đất",
+      "đất đai"
+    ]
+  },
+  {
+    "id": "FAQ036",
+    "category": "Đất đai",
+    "question": "Tôi muốn hỏi quy hoạch sử dụng đất ở Cẩm Trung thì xem ở đâu?",
+    "answer": "Thông tin quy hoạch, kế hoạch sử dụng đất cần được tra cứu từ nguồn công khai chính thức của cơ quan nhà nước. Khi dữ liệu GIS và quy hoạch được tích hợp vào AI Cẩm Trung, Chatbot có thể hướng dẫn người dân tra cứu theo vị trí.",
+    "keywords": [
+      "quy hoạch",
+      "quy hoạch đất",
+      "GIS",
+      "đất đai"
+    ]
+  },
+  {
+    "id": "FAQ037",
+    "category": "Đất đai",
+    "question": "Tôi muốn biết thửa đất của mình có nằm trong quy hoạch không?",
+    "answer": "Việc xác định thửa đất có thuộc quy hoạch hay không cần dựa trên dữ liệu quy hoạch chính thức và vị trí thửa đất. Không nên sử dụng câu trả lời của Chatbot thay cho xác nhận của cơ quan có thẩm quyền.",
+    "keywords": [
+      "thửa đất",
+      "quy hoạch",
+      "kiểm tra quy hoạch"
+    ]
+  },
+  {
+    "id": "FAQ038",
+    "category": "Xây dựng",
+    "question": "Tôi muốn xây nhà có cần xin phép xây dựng không?",
+    "answer": "Việc có phải xin giấy phép xây dựng hay không phụ thuộc loại công trình, vị trí, quy hoạch và trường hợp được miễn theo pháp luật. Người dân cần cung cấp thông tin công trình để được hướng dẫn sơ bộ và xác nhận với cơ quan có thẩm quyền.",
+    "keywords": [
+      "xây nhà",
+      "giấy phép xây dựng",
+      "xây dựng"
+    ]
+  },
+  {
+    "id": "FAQ039",
+    "category": "Xây dựng",
+    "question": "Tôi muốn sửa chữa nhà thì có cần xin phép không?",
+    "answer": "Việc sửa chữa, cải tạo có thể thuộc trường hợp phải xin phép hoặc được miễn tùy quy mô và nội dung sửa chữa. Người dân nên cung cấp nội dung sửa chữa để được xác định hướng xử lý phù hợp.",
+    "keywords": [
+      "sửa nhà",
+      "cải tạo",
+      "xây dựng"
+    ]
+  },
+  {
+    "id": "FAQ040",
+    "category": "Xây dựng",
+    "question": "Tôi muốn phản ánh công trình xây dựng có dấu hiệu vi phạm thì làm thế nào?",
+    "answer": "Người dân nên cung cấp địa điểm, nội dung phản ánh, thời gian và hình ảnh nếu có qua kênh tiếp nhận phản ánh chính thức của địa phương. Cơ quan có thẩm quyền sẽ kiểm tra và xử lý theo quy định.",
+    "keywords": [
+      "công trình vi phạm",
+      "xây dựng trái phép",
+      "phản ánh xây dựng"
+    ]
+  },
+  {
+    "id": "FAQ041",
+    "category": "Giáo dục",
+    "question": "Trên địa bàn xã Cẩm Trung có những trường học nào?",
+    "answer": "Danh sách trường học cần được cập nhật theo mạng lưới trường học chính thức của xã sau sắp xếp. Khi dữ liệu được phê duyệt, Chatbot có thể cung cấp tên trường, cấp học, địa điểm và thông tin liên hệ công khai.",
+    "keywords": [
+      "trường học",
+      "giáo dục",
+      "mạng lưới trường"
+    ]
+  },
+  {
+    "id": "FAQ042",
+    "category": "Giáo dục",
+    "question": "Tôi muốn biết thông tin tuyển sinh của các trường trên địa bàn xã.",
+    "answer": "Thông tin tuyển sinh phụ thuộc từng cấp học và từng năm học. Người dân nên theo dõi thông báo tuyển sinh chính thức của nhà trường và cơ quan quản lý giáo dục; Chatbot sẽ cung cấp thông tin khi được cập nhật.",
+    "keywords": [
+      "tuyển sinh",
+      "trường học",
+      "năm học"
+    ]
+  },
+  {
+    "id": "FAQ043",
+    "category": "Giáo dục",
+    "question": "Con tôi muốn nhập học tại trường trên địa bàn xã thì cần làm gì?",
+    "answer": "Phụ huynh cần thực hiện theo kế hoạch tuyển sinh của cấp học và nhà trường. Hồ sơ, thời gian và phương thức đăng ký có thể thay đổi từng năm; cần kiểm tra thông báo tuyển sinh chính thức.",
+    "keywords": [
+      "nhập học",
+      "học sinh",
+      "tuyển sinh"
+    ]
+  },
+  {
+    "id": "FAQ044",
+    "category": "Giáo dục",
+    "question": "Tôi muốn liên hệ với trường học để hỏi thông tin thì làm thế nào?",
+    "answer": "Anh/chị có thể liên hệ trực tiếp với nhà trường qua thông tin công khai. Khi kho dữ liệu trường học được cập nhật, Chatbot sẽ cung cấp số điện thoại, địa chỉ và kênh liên hệ chính thức nếu có.",
+    "keywords": [
+      "liên hệ trường",
+      "số điện thoại trường",
+      "giáo dục"
+    ]
+  },
+  {
+    "id": "FAQ045",
+    "category": "Giáo dục",
+    "question": "Thông tin về các khoản thu của trường có được công khai không?",
+    "answer": "Các khoản thu của cơ sở giáo dục phải thực hiện theo quy định và được công khai theo yêu cầu hiện hành. Phụ huynh nên xem thông báo chính thức của nhà trường và cơ quan quản lý giáo dục.",
+    "keywords": [
+      "khoản thu",
+      "học phí",
+      "nhà trường"
+    ]
+  },
+  {
+    "id": "FAQ046",
+    "category": "Giáo dục",
+    "question": "Tôi muốn hỏi về chính sách hỗ trợ học sinh thì liên hệ đâu?",
+    "answer": "Chính sách hỗ trợ học sinh phụ thuộc đối tượng, cấp học và quy định từng thời kỳ. Phụ huynh có thể liên hệ nhà trường hoặc bộ phận phụ trách giáo dục để được xác định chính sách áp dụng cho trường hợp cụ thể.",
+    "keywords": [
+      "hỗ trợ học sinh",
+      "chính sách giáo dục",
+      "học sinh"
+    ]
+  },
+  {
+    "id": "FAQ047",
+    "category": "Giáo dục",
+    "question": "Tôi muốn đăng ký cho con học mầm non thì cần biết những gì?",
+    "answer": "Phụ huynh cần theo dõi kế hoạch tuyển sinh mầm non của địa phương và nhà trường, trong đó có độ tuổi, chỉ tiêu, thời gian, hồ sơ và phương thức đăng ký. Chatbot sẽ cập nhật khi có dữ liệu chính thức.",
+    "keywords": [
+      "mầm non",
+      "đăng ký học",
+      "tuyển sinh mầm non"
+    ]
+  },
+  {
+    "id": "FAQ048",
+    "category": "Giáo dục",
+    "question": "Tôi muốn phản ánh vấn đề liên quan đến trường học thì làm thế nào?",
+    "answer": "Phụ huynh nên phản ánh trực tiếp với nhà trường hoặc cơ quan quản lý giáo dục theo thẩm quyền. Với vấn đề cần xử lý tại địa phương, có thể sử dụng kênh phản ánh chính thức được công khai.",
+    "keywords": [
+      "phản ánh trường học",
+      "giáo dục",
+      "kiến nghị"
+    ]
+  },
+  {
+    "id": "FAQ049",
+    "category": "Giáo dục",
+    "question": "Tôi muốn biết lịch năm học thì xem ở đâu?",
+    "answer": "Lịch năm học được ban hành theo quyết định, kế hoạch của cơ quan quản lý giáo dục và nhà trường. Chatbot sẽ cung cấp lịch khi dữ liệu chính thức của năm học được cập nhật.",
+    "keywords": [
+      "lịch năm học",
+      "năm học",
+      "giáo dục"
+    ]
+  },
+  {
+    "id": "FAQ050",
+    "category": "Giáo dục",
+    "question": "Tôi muốn hỏi về thủ tục chuyển trường cho học sinh.",
+    "answer": "Thủ tục chuyển trường phụ thuộc cấp học, nơi đi, nơi đến và quy định hiện hành. Phụ huynh nên liên hệ trường đang học và trường dự kiến chuyển đến để được hướng dẫn hồ sơ, thời gian và điều kiện.",
+    "keywords": [
+      "chuyển trường",
+      "học sinh",
+      "thủ tục chuyển trường"
+    ]
+  },
+  {
+    "id": "FAQ051",
+    "category": "Y tế",
+    "question": "Tôi muốn hỏi về trạm y tế xã Cẩm Trung.",
+    "answer": "Thông tin về Trạm Y tế xã, địa chỉ, số điện thoại, giờ làm việc và các dịch vụ cần được cập nhật từ nguồn chính thức. Khi dữ liệu được phê duyệt, Chatbot sẽ cung cấp thông tin tương ứng.",
+    "keywords": [
+      "trạm y tế",
+      "y tế",
+      "địa chỉ trạm y tế"
+    ]
+  },
+  {
+    "id": "FAQ052",
+    "category": "Y tế",
+    "question": "Tôi muốn đăng ký khám tại trạm y tế xã thì làm thế nào?",
+    "answer": "Người dân có thể liên hệ Trạm Y tế xã để biết lịch làm việc, quy trình tiếp nhận và các giấy tờ cần thiết. Chatbot không thay thế tư vấn hoặc chẩn đoán của nhân viên y tế.",
+    "keywords": [
+      "khám bệnh",
+      "trạm y tế",
+      "đăng ký khám"
+    ]
+  },
+  {
+    "id": "FAQ053",
+    "category": "Y tế",
+    "question": "Tôi cần cấp cứu thì phải làm gì?",
+    "answer": "Trong tình huống khẩn cấp, người dân cần liên hệ ngay cơ sở y tế hoặc dịch vụ cấp cứu phù hợp. Chatbot Cẩm Trung không phải là hệ thống cấp cứu và không thay thế hướng dẫn của nhân viên y tế.",
+    "keywords": [
+      "cấp cứu",
+      "khẩn cấp",
+      "y tế"
+    ]
+  },
+  {
+    "id": "FAQ054",
+    "category": "Y tế",
+    "question": "Tôi muốn hỏi về tiêm chủng cho trẻ em.",
+    "answer": "Lịch và đối tượng tiêm chủng cần thực hiện theo chương trình và hướng dẫn y tế hiện hành. Phụ huynh nên liên hệ cơ sở y tế/Trạm Y tế để được tư vấn lịch tiêm phù hợp cho trẻ.",
+    "keywords": [
+      "tiêm chủng",
+      "vắc xin",
+      "trẻ em"
+    ]
+  },
+  {
+    "id": "FAQ055",
+    "category": "Y tế",
+    "question": "Tôi muốn hỏi về bảo hiểm y tế.",
+    "answer": "Thông tin về bảo hiểm y tế phụ thuộc đối tượng và quy định hiện hành. Người dân có thể liên hệ cơ quan bảo hiểm hoặc cơ sở y tế để được giải đáp về quyền lợi, mức hưởng và thủ tục cụ thể.",
+    "keywords": [
+      "bảo hiểm y tế",
+      "BHYT",
+      "quyền lợi"
+    ]
+  },
+  {
+    "id": "FAQ056",
     "category": "An sinh xã hội",
     "question": "Tôi muốn hỏi về chính sách an sinh xã hội.",
-    "answer": "AI Cẩm Trung có thể cung cấp thông tin về các chính sách đã được xã cập nhật và phê duyệt. Với trường hợp cá nhân cần xác định điều kiện hưởng hoặc mức hưởng, Chatbot sẽ hướng dẫn liên hệ bộ phận chuyên môn để được thẩm định.",
+    "answer": "AI Cẩm Trung có thể cung cấp thông tin về các chính sách an sinh đã được xã cập nhật và phê duyệt. Với trường hợp cá nhân cần xác định điều kiện hưởng hoặc mức hưởng, người dân cần liên hệ bộ phận chuyên môn.",
     "keywords": [
       "an sinh",
       "trợ cấp",
-      "chính sách xã hội",
-      "hộ nghèo"
+      "chính sách xã hội"
+    ]
+  },
+  {
+    "id": "FAQ057",
+    "category": "An sinh xã hội",
+    "question": "Tôi muốn biết hộ nghèo, hộ cận nghèo được hưởng chính sách gì?",
+    "answer": "Các chính sách đối với hộ nghèo và hộ cận nghèo phụ thuộc quy định từng thời kỳ và từng chương trình. Người dân cần liên hệ bộ phận phụ trách chính sách xã hội để xác định quyền lợi của hộ cụ thể.",
+    "keywords": [
+      "hộ nghèo",
+      "hộ cận nghèo",
+      "chính sách"
+    ]
+  },
+  {
+    "id": "FAQ058",
+    "category": "An sinh xã hội",
+    "question": "Tôi muốn hỏi về trợ cấp xã hội hàng tháng.",
+    "answer": "Điều kiện và mức trợ cấp xã hội hàng tháng phụ thuộc nhóm đối tượng và quy định hiện hành. Người dân nên cung cấp nhóm đối tượng hoặc trường hợp cụ thể để được hướng dẫn nơi tiếp nhận hồ sơ.",
+    "keywords": [
+      "trợ cấp xã hội",
+      "trợ cấp hàng tháng",
+      "an sinh"
+    ]
+  },
+  {
+    "id": "FAQ059",
+    "category": "An sinh xã hội",
+    "question": "Người cao tuổi được hưởng chính sách gì?",
+    "answer": "Người cao tuổi có thể thuộc nhiều chính sách khác nhau tùy độ tuổi, hoàn cảnh và điều kiện. Chatbot sẽ cung cấp thông tin khi có dữ liệu chính sách được cập nhật; trường hợp cụ thể cần được cơ quan chuyên môn xác định.",
+    "keywords": [
+      "người cao tuổi",
+      "chính sách người cao tuổi",
+      "trợ cấp"
+    ]
+  },
+  {
+    "id": "FAQ060",
+    "category": "An sinh xã hội",
+    "question": "Tôi muốn hỏi về chính sách đối với người có công.",
+    "answer": "Chính sách người có công gồm nhiều chế độ và đối tượng khác nhau. Người dân cần cung cấp nội dung cần hỏi và giấy tờ liên quan cho cơ quan chuyên môn để được xác định chính sách áp dụng.",
+    "keywords": [
+      "người có công",
+      "chính sách người có công",
+      "ưu đãi"
+    ]
+  },
+  {
+    "id": "FAQ061",
+    "category": "Doanh nghiệp",
+    "question": "Hộ kinh doanh cần làm thủ tục gì?",
+    "answer": "Thủ tục đăng ký hộ kinh doanh cần xác định theo trường hợp đăng ký mới, thay đổi nội dung hoặc chấm dứt hoạt động. Người dân nên kiểm tra thủ tục hiện hành và chuẩn bị hồ sơ theo hướng dẫn của cơ quan có thẩm quyền.",
+    "keywords": [
+      "hộ kinh doanh",
+      "đăng ký hộ kinh doanh",
+      "kinh doanh"
+    ]
+  },
+  {
+    "id": "FAQ062",
+    "category": "Doanh nghiệp",
+    "question": "Tôi muốn đăng ký hộ kinh doanh mới thì bắt đầu từ đâu?",
+    "answer": "Anh/chị cần chuẩn bị hồ sơ đăng ký theo quy định và nộp tại cơ quan có thẩm quyền hoặc theo phương thức trực tuyến nếu thủ tục được hỗ trợ. Chatbot sẽ hướng dẫn chi tiết hơn khi kho dữ liệu thủ tục được cập nhật.",
+    "keywords": [
+      "đăng ký hộ kinh doanh",
+      "hộ kinh doanh mới",
+      "kinh doanh"
+    ]
+  },
+  {
+    "id": "FAQ063",
+    "category": "Doanh nghiệp",
+    "question": "Tôi muốn thay đổi địa chỉ hộ kinh doanh thì làm thế nào?",
+    "answer": "Thay đổi địa chỉ hộ kinh doanh phải thực hiện thủ tục thay đổi nội dung đăng ký theo quy định. Người dân cần xác định địa chỉ cũ, địa chỉ mới và các thông tin liên quan để được hướng dẫn hồ sơ.",
+    "keywords": [
+      "thay đổi địa chỉ",
+      "hộ kinh doanh",
+      "đăng ký kinh doanh"
+    ]
+  },
+  {
+    "id": "FAQ064",
+    "category": "Doanh nghiệp",
+    "question": "Tôi muốn chấm dứt hoạt động hộ kinh doanh thì làm gì?",
+    "answer": "Hộ kinh doanh khi chấm dứt hoạt động phải thực hiện thủ tục theo quy định và hoàn thành các nghĩa vụ liên quan. Cần kiểm tra yêu cầu hồ sơ và cơ quan tiếp nhận tại thời điểm thực hiện.",
+    "keywords": [
+      "chấm dứt hoạt động",
+      "hộ kinh doanh",
+      "giải thể"
+    ]
+  },
+  {
+    "id": "FAQ065",
+    "category": "Doanh nghiệp",
+    "question": "Doanh nghiệp muốn đầu tư, sản xuất tại Cẩm Trung thì liên hệ đâu?",
+    "answer": "Doanh nghiệp nên liên hệ UBND xã và cơ quan chuyên môn có thẩm quyền để được cung cấp thông tin về địa điểm, quy hoạch, thủ tục đầu tư và các điều kiện liên quan. Chatbot chỉ cung cấp thông tin đã được công khai và phê duyệt.",
+    "keywords": [
+      "doanh nghiệp",
+      "đầu tư",
+      "sản xuất",
+      "Cẩm Trung"
+    ]
+  },
+  {
+    "id": "FAQ066",
+    "category": "Doanh nghiệp",
+    "question": "Tôi muốn phản ánh khó khăn trong hoạt động kinh doanh thì làm thế nào?",
+    "answer": "Doanh nghiệp/hộ kinh doanh có thể gửi phản ánh, kiến nghị qua kênh tiếp nhận chính thức của địa phương hoặc cơ quan có thẩm quyền. Nội dung nên nêu rõ vấn đề, địa điểm, thời gian và đề xuất xử lý nếu có.",
+    "keywords": [
+      "phản ánh doanh nghiệp",
+      "khó khăn kinh doanh",
+      "kiến nghị"
+    ]
+  },
+  {
+    "id": "FAQ067",
+    "category": "Doanh nghiệp",
+    "question": "Tôi muốn biết thông tin về các chương trình hỗ trợ doanh nghiệp.",
+    "answer": "Các chương trình hỗ trợ doanh nghiệp thay đổi theo từng thời kỳ và chương trình cụ thể. Chatbot sẽ cung cấp thông tin từ các văn bản, chương trình chính thức đã được cập nhật.",
+    "keywords": [
+      "hỗ trợ doanh nghiệp",
+      "chương trình hỗ trợ",
+      "doanh nghiệp"
+    ]
+  },
+  {
+    "id": "FAQ068",
+    "category": "Doanh nghiệp",
+    "question": "Hộ sản xuất kinh doanh có thể tham gia chuyển đổi số như thế nào?",
+    "answer": "Hộ sản xuất kinh doanh có thể bắt đầu bằng thanh toán số, bán hàng trực tuyến, quảng bá sản phẩm trên nền tảng số, sử dụng hóa đơn/chứng từ điện tử theo quy định và nâng cao kỹ năng bảo mật tài khoản.",
+    "keywords": [
+      "chuyển đổi số",
+      "hộ kinh doanh",
+      "bán hàng online"
+    ]
+  },
+  {
+    "id": "FAQ069",
+    "category": "Doanh nghiệp",
+    "question": "Tôi muốn đưa sản phẩm địa phương lên môi trường số thì làm thế nào?",
+    "answer": "Có thể bắt đầu bằng việc chuẩn hóa thông tin sản phẩm, hình ảnh, giá, nguồn gốc, thông tin liên hệ và sử dụng các kênh thương mại điện tử hoặc nền tảng số phù hợp. Khi xã có chương trình hỗ trợ cụ thể, Chatbot sẽ cập nhật.",
+    "keywords": [
+      "sản phẩm địa phương",
+      "thương mại điện tử",
+      "OCOP"
+    ]
+  },
+  {
+    "id": "FAQ070",
+    "category": "Doanh nghiệp",
+    "question": "Doanh nghiệp có thể đề xuất hợp tác với UBND xã như thế nào?",
+    "answer": "Doanh nghiệp có thể gửi đề xuất chính thức tới UBND xã, nêu rõ nội dung hợp tác, mục tiêu, phạm vi, lợi ích và thông tin pháp lý liên quan. Việc xem xét hợp tác thuộc thẩm quyền của cơ quan có trách nhiệm.",
+    "keywords": [
+      "hợp tác",
+      "doanh nghiệp",
+      "đề xuất"
+    ]
+  },
+  {
+    "id": "FAQ071",
+    "category": "Chuyển đổi số",
+    "question": "Tôi muốn sử dụng ứng dụng i-Hà Tĩnh thì bắt đầu từ đâu?",
+    "answer": "Anh/chị cần cài đặt ứng dụng i-Hà Tĩnh, đăng ký/đăng nhập theo hướng dẫn và sử dụng các chức năng phù hợp. Khi xã cập nhật tài liệu hướng dẫn, Chatbot có thể hướng dẫn từng bước.",
+    "keywords": [
+      "i-Hà Tĩnh",
+      "i Hà Tĩnh",
+      "ứng dụng"
+    ]
+  },
+  {
+    "id": "FAQ072",
+    "category": "Chuyển đổi số",
+    "question": "i-Hà Tĩnh có những chức năng gì?",
+    "answer": "Các chức năng cụ thể phụ thuộc phiên bản ứng dụng và phân quyền người dùng. Trong quá trình triển khai tại Cẩm Trung, người dân có thể được hướng dẫn sử dụng các chức năng như phản ánh hiện trường, góp ý, kiến nghị và các tiện ích được công khai.",
+    "keywords": [
+      "i-Hà Tĩnh",
+      "chức năng",
+      "phản ánh hiện trường"
+    ]
+  },
+  {
+    "id": "FAQ073",
+    "category": "Chuyển đổi số",
+    "question": "Tôi muốn phản ánh hiện trường trên i-Hà Tĩnh thì làm thế nào?",
+    "answer": "Người dân đăng nhập ứng dụng, chọn chức năng phản ánh phù hợp, mô tả nội dung, địa điểm và đính kèm hình ảnh nếu cần, sau đó gửi phản ánh theo hướng dẫn của ứng dụng. Cần kiểm tra lại thông tin trước khi gửi.",
+    "keywords": [
+      "phản ánh hiện trường",
+      "i-Hà Tĩnh",
+      "phản ánh"
+    ]
+  },
+  {
+    "id": "FAQ074",
+    "category": "Chuyển đổi số",
+    "question": "Tôi muốn góp ý, kiến nghị với chính quyền thì làm thế nào?",
+    "answer": "Người dân có thể sử dụng kênh góp ý, kiến nghị được UBND xã công khai, trong đó có thể gồm ứng dụng i-Hà Tĩnh hoặc các kênh tiếp nhận chính thức khác. Nội dung nên rõ ràng, có địa điểm và bằng chứng nếu cần.",
+    "keywords": [
+      "góp ý",
+      "kiến nghị",
+      "i-Hà Tĩnh"
+    ]
+  },
+  {
+    "id": "FAQ075",
+    "category": "Chuyển đổi số",
+    "question": "Bình dân học vụ số là gì?",
+    "answer": "Bình dân học vụ số là phong trào phổ cập kỹ năng số, giúp người dân nâng cao khả năng sử dụng công nghệ và các dịch vụ số trong đời sống. Tại địa phương, người dân có thể được hướng dẫn các kỹ năng số thiết yếu.",
+    "keywords": [
+      "Bình dân học vụ số",
+      "kỹ năng số",
+      "phổ cập kỹ năng số"
+    ]
+  },
+  {
+    "id": "FAQ076",
+    "category": "Chuyển đổi số",
+    "question": "Tôi muốn học kỹ năng số cơ bản thì đăng ký ở đâu?",
+    "answer": "Người dân có thể tham gia các lớp hoặc hoạt động hướng dẫn kỹ năng số do địa phương, tổ chuyển đổi số cộng đồng hoặc đơn vị liên quan tổ chức. Thông tin về lịch và địa điểm sẽ được Chatbot cập nhật khi có kế hoạch chính thức.",
+    "keywords": [
+      "kỹ năng số",
+      "học kỹ năng số",
+      "tổ chuyển đổi số cộng đồng"
+    ]
+  },
+  {
+    "id": "FAQ077",
+    "category": "Chuyển đổi số",
+    "question": "Tổ chuyển đổi số cộng đồng có thể hỗ trợ tôi những gì?",
+    "answer": "Tổ chuyển đổi số cộng đồng có thể hỗ trợ người dân tiếp cận kỹ năng số, dịch vụ công trực tuyến, ứng dụng số và các chương trình chuyển đổi số theo kế hoạch của địa phương.",
+    "keywords": [
+      "tổ chuyển đổi số cộng đồng",
+      "hỗ trợ kỹ năng số",
+      "chuyển đổi số"
+    ]
+  },
+  {
+    "id": "FAQ078",
+    "category": "Chuyển đổi số",
+    "question": "Làm thế nào để bảo vệ tài khoản số của tôi?",
+    "answer": "Không chia sẻ mật khẩu hoặc mã OTP; sử dụng mật khẩu mạnh và khác nhau; bật xác thực nhiều lớp khi có; không bấm vào liên kết đáng ngờ; kiểm tra kỹ người gửi và website trước khi đăng nhập.",
+    "keywords": [
+      "an toàn số",
+      "bảo mật",
+      "mật khẩu",
+      "OTP"
+    ]
+  },
+  {
+    "id": "FAQ079",
+    "category": "Chuyển đổi số",
+    "question": "Tôi nghi ngờ bị lừa đảo trên mạng thì phải làm gì?",
+    "answer": "Không tiếp tục chuyển tiền hoặc cung cấp mã OTP/thông tin tài khoản. Lưu lại bằng chứng, liên hệ ngân hàng nếu liên quan giao dịch tài chính và sử dụng kênh tiếp nhận của cơ quan chức năng để được hướng dẫn.",
+    "keywords": [
+      "lừa đảo",
+      "lừa đảo trực tuyến",
+      "an toàn mạng"
+    ]
+  },
+  {
+    "id": "FAQ080",
+    "category": "Chuyển đổi số",
+    "question": "Tôi có thể dùng Chatbot để hỏi thủ tục hành chính mọi lúc không?",
+    "answer": "Chatbot có thể hỗ trợ tra cứu bất cứ lúc nào khi website hoạt động. Tuy nhiên, việc tiếp nhận hồ sơ, xử lý thủ tục và hỗ trợ trực tiếp của cán bộ vẫn phụ thuộc thời gian làm việc và quy định của cơ quan.",
+    "keywords": [
+      "chatbot 24/7",
+      "thủ tục hành chính",
+      "tra cứu"
+    ]
+  },
+  {
+    "id": "FAQ081",
+    "category": "Phản ánh kiến nghị",
+    "question": "Tôi muốn phản ánh đường giao thông bị hư hỏng thì làm thế nào?",
+    "answer": "Anh/chị nên ghi rõ vị trí, đoạn đường, tình trạng hư hỏng, thời gian phát hiện và gửi hình ảnh nếu có qua kênh phản ánh chính thức của địa phương. Cơ quan có thẩm quyền sẽ kiểm tra và xử lý theo trách nhiệm.",
+    "keywords": [
+      "đường hư hỏng",
+      "giao thông",
+      "phản ánh"
+    ]
+  },
+  {
+    "id": "FAQ082",
+    "category": "Phản ánh kiến nghị",
+    "question": "Tôi muốn phản ánh đèn đường không hoạt động thì làm thế nào?",
+    "answer": "Hãy cung cấp vị trí cụ thể, số cột đèn nếu xác định được, thời gian xảy ra và hình ảnh nếu có. Gửi qua kênh phản ánh chính thức để cơ quan phụ trách kiểm tra.",
+    "keywords": [
+      "đèn đường",
+      "chiếu sáng",
+      "phản ánh"
+    ]
+  },
+  {
+    "id": "FAQ083",
+    "category": "Phản ánh kiến nghị",
+    "question": "Tôi muốn phản ánh rác thải gây ô nhiễm thì làm thế nào?",
+    "answer": "Người dân nên ghi rõ địa điểm, tình trạng, thời gian và hình ảnh nếu có, sau đó gửi phản ánh qua kênh chính thức của địa phương. Không tự ý xử lý các chất thải nguy hiểm.",
+    "keywords": [
+      "rác thải",
+      "ô nhiễm",
+      "môi trường"
+    ]
+  },
+  {
+    "id": "FAQ084",
+    "category": "Phản ánh kiến nghị",
+    "question": "Tôi muốn phản ánh hành vi lấn chiếm lòng đường, vỉa hè thì làm thế nào?",
+    "answer": "Anh/chị có thể gửi phản ánh nêu rõ vị trí, thời gian, nội dung và hình ảnh nếu có qua kênh tiếp nhận chính thức. Cơ quan có thẩm quyền sẽ kiểm tra theo quy định.",
+    "keywords": [
+      "lấn chiếm",
+      "vỉa hè",
+      "lòng đường"
+    ]
+  },
+  {
+    "id": "FAQ085",
+    "category": "Phản ánh kiến nghị",
+    "question": "Tôi muốn kiến nghị một vấn đề với UBND xã thì làm thế nào?",
+    "answer": "Người dân có thể gửi kiến nghị bằng các kênh tiếp nhận chính thức của UBND xã. Nội dung nên nêu rõ vấn đề, hoàn cảnh, địa điểm, đề xuất và thông tin liên hệ cần thiết.",
+    "keywords": [
+      "kiến nghị UBND",
+      "kiến nghị",
+      "góp ý"
+    ]
+  },
+  {
+    "id": "FAQ086",
+    "category": "Phản ánh kiến nghị",
+    "question": "Tôi có thể gửi hình ảnh khi phản ánh không?",
+    "answer": "Có thể gửi hình ảnh nếu kênh tiếp nhận hỗ trợ tệp đính kèm. Hình ảnh nên rõ ràng, liên quan trực tiếp đến nội dung phản ánh và không chứa dữ liệu cá nhân không cần thiết của người khác.",
+    "keywords": [
+      "hình ảnh",
+      "đính kèm",
+      "phản ánh"
+    ]
+  },
+  {
+    "id": "FAQ087",
+    "category": "Phản ánh kiến nghị",
+    "question": "Sau khi gửi phản ánh tôi có được theo dõi kết quả không?",
+    "answer": "Nếu kênh tiếp nhận có chức năng tra cứu, người dân có thể theo dõi bằng mã phản ánh hoặc tài khoản tương ứng. Nếu không, có thể liên hệ cơ quan tiếp nhận để hỏi tình trạng xử lý.",
+    "keywords": [
+      "theo dõi phản ánh",
+      "mã phản ánh",
+      "kết quả phản ánh"
+    ]
+  },
+  {
+    "id": "FAQ088",
+    "category": "Phản ánh kiến nghị",
+    "question": "Chatbot có thể tự chuyển câu hỏi của tôi cho cán bộ không?",
+    "answer": "Phiên bản thử nghiệm hiện tại chưa có chức năng chuyển tự động. Đây là chức năng sẽ được thiết kế ở phiên bản tiếp theo, với cơ chế phân loại nội dung và chuyển đến đúng bộ phận xử lý.",
+    "keywords": [
+      "chuyển cán bộ",
+      "chuyển câu hỏi",
+      "cán bộ"
+    ]
+  },
+  {
+    "id": "FAQ089",
+    "category": "Phản ánh kiến nghị",
+    "question": "Tôi muốn góp ý để Chatbot trả lời tốt hơn thì làm thế nào?",
+    "answer": "Anh/chị có thể gửi câu hỏi chưa được trả lời, câu trả lời chưa chính xác hoặc đề xuất nội dung cần bổ sung qua kênh góp ý của địa phương. Dữ liệu phản hồi sẽ được cán bộ quản trị xem xét trước khi cập nhật kho tri thức.",
+    "keywords": [
+      "góp ý chatbot",
+      "cải thiện chatbot",
+      "phản hồi"
+    ]
+  },
+  {
+    "id": "FAQ090",
+    "category": "Phản ánh kiến nghị",
+    "question": "Nếu câu trả lời của Chatbot sai thì tôi phải làm gì?",
+    "answer": "Không nên sử dụng câu trả lời chưa được xác minh để đưa ra quyết định quan trọng. Anh/chị có thể phản hồi cho quản trị viên Chatbot và kiểm tra lại với cơ quan có thẩm quyền. Nội dung được cập nhật sau khi cán bộ xác minh.",
+    "keywords": [
+      "Chatbot sai",
+      "sai thông tin",
+      "phản hồi"
+    ]
+  },
+  {
+    "id": "FAQ091",
+    "category": "Dữ liệu địa phương",
+    "question": "Xã Cẩm Trung được hình thành từ những địa phương nào?",
+    "answer": "Thông tin địa giới, đơn vị hành chính và quá trình sắp xếp cần được cập nhật theo nghị quyết, quyết định chính thức. Chatbot chỉ sử dụng thông tin đã được cán bộ quản trị xác minh và phê duyệt.",
+    "keywords": [
+      "Cẩm Trung",
+      "sáp nhập",
+      "đơn vị hành chính"
+    ]
+  },
+  {
+    "id": "FAQ092",
+    "category": "Dữ liệu địa phương",
+    "question": "Tôi muốn tìm thông tin các thôn trên địa bàn xã Cẩm Trung.",
+    "answer": "Danh sách thôn, địa chỉ và thông tin trưởng thôn cần được cập nhật từ dữ liệu chính thức của xã. Chatbot sẽ cung cấp thông tin công khai sau khi dữ liệu được phê duyệt.",
+    "keywords": [
+      "thôn",
+      "danh sách thôn",
+      "Cẩm Trung"
+    ]
+  },
+  {
+    "id": "FAQ093",
+    "category": "Dữ liệu địa phương",
+    "question": "Tôi muốn biết các điểm trường trên địa bàn xã.",
+    "answer": "Thông tin điểm trường cần được cập nhật theo mạng lưới trường học chính thức sau sắp xếp. Chatbot có thể cung cấp tên điểm trường, cấp học và địa điểm khi dữ liệu đã được phê duyệt.",
+    "keywords": [
+      "điểm trường",
+      "trường học",
+      "giáo dục"
+    ]
+  },
+  {
+    "id": "FAQ094",
+    "category": "Dữ liệu địa phương",
+    "question": "Tôi muốn tìm thông tin các cơ sở y tế trên địa bàn xã.",
+    "answer": "Chatbot sẽ cung cấp danh sách cơ sở y tế, địa chỉ và thông tin liên hệ công khai khi dữ liệu chính thức được cập nhật. Với vấn đề sức khỏe cụ thể, người dân cần liên hệ nhân viên y tế.",
+    "keywords": [
+      "cơ sở y tế",
+      "trạm y tế",
+      "y tế"
+    ]
+  },
+  {
+    "id": "FAQ095",
+    "category": "Dữ liệu địa phương",
+    "question": "Tôi muốn biết các địa điểm công cộng trên địa bàn xã.",
+    "answer": "Kho dữ liệu AI Cẩm Trung có thể tích hợp danh mục địa điểm công cộng như trụ sở, trường học, trạm y tế, nhà văn hóa, điểm sinh hoạt cộng đồng và các địa điểm khác sau khi được xã xác minh.",
+    "keywords": [
+      "địa điểm công cộng",
+      "địa điểm",
+      "GIS"
+    ]
+  },
+  {
+    "id": "FAQ096",
+    "category": "Dữ liệu địa phương",
+    "question": "AI Cẩm Trung có bản đồ số không?",
+    "answer": "Phiên bản thử nghiệm hiện tại chưa tích hợp đầy đủ bản đồ GIS. Định hướng phát triển là tích hợp bản đồ số để người dân tra cứu vị trí cơ quan, trường học, trạm y tế, điểm công cộng và các lớp dữ liệu được phép công khai.",
+    "keywords": [
+      "bản đồ số",
+      "GIS",
+      "AI Cẩm Trung"
+    ]
+  },
+  {
+    "id": "FAQ097",
+    "category": "Dữ liệu địa phương",
+    "question": "Tôi có thể tìm đường đến UBND xã bằng Chatbot không?",
+    "answer": "Khi dữ liệu vị trí và bản đồ số được tích hợp, Chatbot có thể cung cấp hướng dẫn vị trí và liên kết bản đồ. Phiên bản hiện tại chỉ cung cấp thông tin địa điểm đã được cập nhật.",
+    "keywords": [
+      "chỉ đường",
+      "bản đồ",
+      "UBND xã"
+    ]
+  },
+  {
+    "id": "FAQ098",
+    "category": "Quản trị Chatbot",
+    "question": "Ai chịu trách nhiệm cập nhật dữ liệu cho Chatbot Cẩm Trung?",
+    "answer": "Dữ liệu cần được giao cho cán bộ hoặc đơn vị phụ trách từng lĩnh vực cập nhật, kiểm tra và chịu trách nhiệm về nội dung. Quản trị viên Chatbot thực hiện kiểm soát phiên bản và chỉ đưa dữ liệu đã được phê duyệt vào sử dụng.",
+    "keywords": [
+      "quản trị dữ liệu",
+      "cập nhật dữ liệu",
+      "phê duyệt"
+    ]
+  },
+  {
+    "id": "FAQ099",
+    "category": "Quản trị Chatbot",
+    "question": "Chatbot cập nhật thông tin mới như thế nào?",
+    "answer": "Thông tin mới phải được tiếp nhận từ nguồn chính thức, kiểm tra nội dung, xác định người chịu trách nhiệm, phê duyệt và cập nhật vào kho dữ liệu. Sau khi cập nhật cần kiểm thử các câu hỏi liên quan trước khi công khai.",
+    "keywords": [
+      "cập nhật Chatbot",
+      "dữ liệu mới",
+      "phê duyệt"
+    ]
+  },
+  {
+    "id": "FAQ100",
+    "category": "Quản trị Chatbot",
+    "question": "AI Cẩm Trung sẽ được phát triển thêm những chức năng gì?",
+    "answer": "Định hướng phát triển gồm kết nối AI/RAG với kho tri thức chính thức, tra cứu thủ tục hành chính, chuyển câu hỏi cho cán bộ, tích hợp bản đồ GIS, thống kê câu hỏi, Dashboard quản trị, phản hồi chất lượng và các kênh phục vụ người dân phù hợp.",
+    "keywords": [
+      "AI Cẩm Trung",
+      "RAG",
+      "GIS",
+      "Dashboard",
+      "phát triển"
     ]
   }
 ]
