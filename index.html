@@ -3,55 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Cẩm Trung - Trợ lý số</title>
-  <meta name="description" content="AI Cẩm Trung - Trợ lý số phục vụ người dân và doanh nghiệp">
+  <title>AI Cẩm Trung – Trợ lý số</title>
+  <meta name="description" content="Trợ lý số AI Cẩm Trung phục vụ người dân và doanh nghiệp">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app">
-    <header class="header">
+  <div class="app-shell">
+    <header class="topbar">
       <div class="brand">
-        <div class="logo">CT</div>
+        <div class="brand-mark">CT</div>
         <div>
           <h1>AI Cẩm Trung</h1>
           <p>Trợ lý số phục vụ người dân và doanh nghiệp</p>
         </div>
       </div>
-      <span class="status"><span class="dot"></span> Đang hoạt động</span>
+      <div class="status"><span></span> Đang hoạt động</div>
     </header>
 
-    <section class="hero">
-      <h2>Xin chào! Tôi có thể hỗ trợ gì?</h2>
-      <p>Hỏi về thủ tục hành chính, hộ tịch, giáo dục, dịch vụ công, thông tin địa phương và các nội dung đã được UBND xã công khai.</p>
-
-      <div class="suggestions">
-        <button data-question="UBND xã Cẩm Trung làm việc vào thời gian nào?">🕐 Giờ làm việc</button>
-        <button data-question="Bộ phận Một cửa của xã làm những việc gì?">🏛️ Bộ phận Một cửa</button>
-        <button data-question="Đăng ký khai sinh cần những giấy tờ gì?">👶 Khai sinh</button>
-        <button data-question="Tôi muốn phản ánh một vấn đề trên địa bàn xã thì làm thế nào?">📣 Phản ánh</button>
-      </div>
-    </section>
-
-    <section class="chat" id="chat" aria-live="polite">
-      <div class="message bot">
-        <div class="avatar">AI</div>
-        <div class="bubble">
-          Xin chào! Tôi là <strong>AI Cẩm Trung</strong>. Hãy nhập câu hỏi của anh/chị. Tôi sẽ ưu tiên trả lời từ kho dữ liệu chính thức của Cẩm Trung.
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="side-title">Lĩnh vực hỗ trợ</div>
+        <div id="categoryMenu" class="category-menu"></div>
+        <div class="side-note">
+          <strong>💡 Mẹo hỏi</strong>
+          <p>Hãy mô tả nhu cầu bằng câu tự nhiên. Ví dụ: “Tôi muốn đăng ký khai sinh cho con thì cần làm gì?”</p>
         </div>
-      </div>
-    </section>
+      </aside>
 
-    <form class="composer" id="chatForm">
-      <input id="questionInput" type="text" autocomplete="off"
-             placeholder="Nhập câu hỏi của anh/chị..." maxlength="500">
-      <button type="submit" id="sendBtn">Gửi</button>
-    </form>
+      <section class="chat-panel">
+        <div class="chat-head">
+          <div>
+            <h2 id="currentTitle">Xin chào! Tôi có thể giúp gì?</h2>
+            <p id="currentDesc">Chọn một lĩnh vực hoặc đặt câu hỏi trực tiếp.</p>
+          </div>
+          <button id="clearBtn" class="ghost-btn" title="Xóa cuộc trò chuyện">↻ Làm mới</button>
+        </div>
 
-    <footer>
-      <p><strong>Lưu ý:</strong> Phiên bản thử nghiệm V1.0 chỉ cung cấp thông tin tham khảo. AI không thay thế cán bộ có thẩm quyền và không tự quyết định hồ sơ.</p>
-      <p>© 2026 UBND xã Cẩm Trung – AI Cẩm Trung V1.0</p>
-    </footer>
-  </main>
+        <div id="suggestions" class="suggestions"></div>
+
+        <div id="chatMessages" class="chat-messages">
+          <div class="message bot">
+            <div class="avatar">AI</div>
+            <div class="bubble">
+              <strong>AI Cẩm Trung</strong>
+              <p>Xin chào! Tôi là trợ lý số AI Cẩm Trung. Anh/chị có thể chọn một lĩnh vực bên trái hoặc đặt câu hỏi về thủ tục hành chính, giáo dục, đất đai, chuyển đổi số và các thông tin công khai của địa phương.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-area">
+          <textarea id="questionInput" rows="1" placeholder="Nhập câu hỏi của anh/chị..."></textarea>
+          <button id="sendBtn">Gửi <span>➤</span></button>
+        </div>
+        <div class="disclaimer">Thông tin do Chatbot cung cấp nhằm hỗ trợ tra cứu. Với hồ sơ cụ thể, vui lòng xác nhận với cơ quan có thẩm quyền.</div>
+      </section>
+    </main>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
