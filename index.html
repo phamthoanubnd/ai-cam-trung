@@ -1,64 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Cẩm Trung - Trợ lý số phục vụ người dân và doanh nghiệp xã Cẩm Trung">
   <title>AI Cẩm Trung – Trợ lý số</title>
-  <meta name="description" content="Trợ lý số AI Cẩm Trung phục vụ người dân và doanh nghiệp">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <div class="brand">
-        <div class="brand-mark">CT</div>
+        <div class="brand-logo">CT</div>
         <div>
-          <h1>AI Cẩm Trung</h1>
-          <p>Trợ lý số phục vụ người dân và doanh nghiệp</p>
+          <div class="brand-title">AI Cẩm Trung</div>
+          <div class="brand-subtitle">Trợ lý số phục vụ người dân và doanh nghiệp</div>
         </div>
       </div>
-      <div class="status"><span></span> Đang hoạt động</div>
+      <div class="status"><span class="status-dot"></span> Đang hoạt động</div>
     </header>
 
-    <main class="layout">
+    <div class="layout">
       <aside class="sidebar">
-        <div class="side-title">Lĩnh vực hỗ trợ</div>
-        <div id="categoryMenu" class="category-menu"></div>
-        <div class="side-note">
-          <strong>💡 Mẹo hỏi</strong>
-          <p>Hãy mô tả nhu cầu bằng câu tự nhiên. Ví dụ: “Tôi muốn đăng ký khai sinh cho con thì cần làm gì?”</p>
-        </div>
+        <div class="sidebar-title">Lĩnh vực hỗ trợ</div>
+        <button class="category active" data-category="Tất cả" data-question="">
+          <span>✨</span> Tất cả
+        </button>
+        <button class="category" data-category="Thủ tục hành chính"><span>📋</span> Thủ tục hành chính</button>
+        <button class="category" data-category="Hộ tịch"><span>👨‍👩‍👧</span> Hộ tịch</button>
+        <button class="category" data-category="Đất đai"><span>🏠</span> Đất đai</button>
+        <button class="category" data-category="Chính sách xã hội"><span>🤝</span> Chính sách xã hội</button>
+        <button class="category" data-category="Giáo dục"><span>🎓</span> Giáo dục</button>
+        <button class="category" data-category="Y tế"><span>🏥</span> Y tế</button>
+        <button class="category" data-category="Chuyển đổi số"><span>💻</span> Chuyển đổi số</button>
+        <button class="category" data-category="Doanh nghiệp"><span>🏢</span> Doanh nghiệp</button>
+        <button class="category" data-category="Nông nghiệp"><span>🌱</span> Nông nghiệp</button>
+        <button class="category" data-category="Phản ánh, kiến nghị"><span>📣</span> Phản ánh, kiến nghị</button>
       </aside>
 
-      <section class="chat-panel">
-        <div class="chat-head">
+      <main class="chat-panel">
+        <section class="welcome">
+          <div class="welcome-icon">🤖</div>
           <div>
-            <h2 id="currentTitle">Xin chào! Tôi có thể giúp gì?</h2>
-            <p id="currentDesc">Chọn một lĩnh vực hoặc đặt câu hỏi trực tiếp.</p>
+            <h1>Xin chào! Tôi có thể giúp gì?</h1>
+            <p>Hãy đặt câu hỏi bằng ngôn ngữ tự nhiên. Tôi sẽ hỗ trợ tra cứu thông tin và hướng dẫn bước tiếp theo.</p>
           </div>
-          <button id="clearBtn" class="ghost-btn" title="Xóa cuộc trò chuyện">↻ Làm mới</button>
-        </div>
+        </section>
 
-        <div id="suggestions" class="suggestions"></div>
+        <section class="suggestion-section">
+          <div class="section-heading">💡 Câu hỏi gợi ý</div>
+          <div id="suggestions" class="suggestions">
+            <button class="suggestion" data-question="Tôi muốn đăng ký khai sinh cho con thì cần làm gì?">Đăng ký khai sinh cho con cần làm gì?</button>
+            <button class="suggestion" data-question="Tôi muốn thực hiện thủ tục hành chính trực tuyến thì làm thế nào?">Nộp hồ sơ trực tuyến như thế nào?</button>
+            <button class="suggestion" data-question="Tôi muốn cài đặt và sử dụng ứng dụng i-Hà Tĩnh thì làm thế nào?">Cách sử dụng i-Hà Tĩnh</button>
+            <button class="suggestion" data-question="Tôi muốn gửi phản ánh, kiến nghị đến địa phương thì làm thế nào?">Gửi phản ánh, kiến nghị</button>
+          </div>
+        </section>
 
-        <div id="chatMessages" class="chat-messages">
-          <div class="message bot">
+        <section id="chat-messages" class="chat-messages" aria-live="polite">
+          <div class="message bot-message">
             <div class="avatar">AI</div>
             <div class="bubble">
-              <strong>AI Cẩm Trung</strong>
-              <p>Xin chào! Tôi là trợ lý số AI Cẩm Trung. Anh/chị có thể chọn một lĩnh vực bên trái hoặc đặt câu hỏi về thủ tục hành chính, giáo dục, đất đai, chuyển đổi số và các thông tin công khai của địa phương.</p>
+              <div class="message-name">AI Cẩm Trung</div>
+              <div class="message-content">Xin chào! Tôi là trợ lý số AI Cẩm Trung. Anh/chị có thể hỏi về thủ tục hành chính, giáo dục, đất đai, chuyển đổi số và các thông tin công khai của địa phương.</div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="input-area">
-          <textarea id="questionInput" rows="1" placeholder="Nhập câu hỏi của anh/chị..."></textarea>
-          <button id="sendBtn">Gửi <span>➤</span></button>
+        <div id="category-note" class="category-note" hidden></div>
+
+        <form id="chat-form" class="input-area">
+          <textarea id="user-input" rows="1" maxlength="3000"
+            placeholder="Nhập câu hỏi của anh/chị..." aria-label="Nhập câu hỏi"></textarea>
+          <button id="send-btn" class="send-btn" type="submit">
+            <span>Gửi</span><span class="send-icon">➤</span>
+          </button>
+        </form>
+
+        <div class="disclaimer">
+          Thông tin do Chatbot cung cấp nhằm hỗ trợ tra cứu. Với hồ sơ cụ thể hoặc nội dung cần xác nhận pháp lý, vui lòng kiểm tra với cơ quan có thẩm quyền.
         </div>
-        <div class="disclaimer">Thông tin do Chatbot cung cấp nhằm hỗ trợ tra cứu. Với hồ sơ cụ thể, vui lòng xác nhận với cơ quan có thẩm quyền.</div>
-      </section>
-    </main>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <span>© 2026 AI Cẩm Trung</span>
+      <span>Trợ lý số phục vụ người dân và doanh nghiệp</span>
+    </footer>
   </div>
-  <script src="app.js"></script>
+
+  <script src="./app.js"></script>
 </body>
 </html>

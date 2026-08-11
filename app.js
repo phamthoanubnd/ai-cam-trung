@@ -1,6 +1,8 @@
-/* AI CẨM TRUNG V2.0 — app.js
+/* =========================================================
+   AI CẨM TRUNG V2.0 — app.js
    GitHub Pages -> Cloudflare Worker -> Workers AI
-*/
+   Không chứa API key.
+   ========================================================= */
 
 const AI_CONFIG = {
   endpoint: "https://ai-cam-trung-api.phamthoanubnd.workers.dev/api/chat",
@@ -9,8 +11,62 @@ const AI_CONFIG = {
 };
 
 const FAQ_CONFIG = { url: "./faq.json" };
+
 let FAQ_DATA = [];
 let FAQ_READY = false;
+
+const CATEGORY_SUGGESTIONS = {
+  "Thủ tục hành chính": [
+    "Tôi muốn thực hiện thủ tục hành chính trực tuyến thì làm thế nào?",
+    "Tôi muốn tra cứu tình trạng hồ sơ của mình.",
+    "Tôi cần liên hệ bộ phận tiếp nhận hồ sơ như thế nào?"
+  ],
+  "Hộ tịch": [
+    "Tôi muốn đăng ký khai sinh cho con thì cần làm gì?",
+    "Đăng ký kết hôn cần chuẩn bị giấy tờ gì?",
+    "Tôi muốn xin giấy xác nhận tình trạng hôn nhân."
+  ],
+  "Đất đai": [
+    "Tôi muốn làm thủ tục cấp giấy chứng nhận quyền sử dụng đất.",
+    "Tôi muốn hỏi về thủ tục chuyển nhượng quyền sử dụng đất.",
+    "Tôi cần liên hệ bộ phận nào để hỏi về đất đai?"
+  ],
+  "Chính sách xã hội": [
+    "Tôi muốn hỏi về chính sách hỗ trợ hộ nghèo.",
+    "Tôi muốn hỏi về chế độ người có công.",
+    "Tôi muốn hỏi về trợ cấp xã hội."
+  ],
+  "Giáo dục": [
+    "Tôi muốn hỏi thông tin tuyển sinh trên địa bàn xã.",
+    "Tôi cần liên hệ trường học như thế nào?",
+    "Tôi muốn hỏi về hồ sơ nhập học."
+  ],
+  "Y tế": [
+    "Tôi muốn hỏi thông tin về trạm y tế xã.",
+    "Tôi muốn hỏi về bảo hiểm y tế.",
+    "Tôi muốn hỏi về lịch tiêm chủng."
+  ],
+  "Chuyển đổi số": [
+    "Tôi muốn cài đặt ứng dụng i-Hà Tĩnh.",
+    "Tôi muốn sử dụng dịch vụ công trực tuyến.",
+    "Tôi muốn đăng ký tài khoản VNeID."
+  ],
+  "Doanh nghiệp": [
+    "Tôi muốn đăng ký hộ kinh doanh thì cần làm gì?",
+    "Tôi muốn hỏi thủ tục liên quan đến doanh nghiệp.",
+    "Tôi có thể nộp hồ sơ kinh doanh trực tuyến không?"
+  ],
+  "Nông nghiệp": [
+    "Tôi muốn hỏi về hỗ trợ sản xuất nông nghiệp.",
+    "Tôi muốn hỏi về chăn nuôi trên địa bàn.",
+    "Tôi cần liên hệ bộ phận nào về nông nghiệp?"
+  ],
+  "Phản ánh, kiến nghị": [
+    "Tôi muốn gửi phản ánh, kiến nghị đến địa phương.",
+    "Tôi muốn phản ánh một vấn đề ở khu dân cư.",
+    "Tôi có thể theo dõi kết quả phản ánh như thế nào?"
+  ]
+};
 
 function normalizeText(text = "") {
   return String(text).toLowerCase()
@@ -19,21 +75,21 @@ function normalizeText(text = "") {
     .replace(/\s+/g, " ").trim();
 }
 
-function loadFAQ() {
-  return fetch(FAQ_CONFIG.url, { cache: "no-store" })
-    .then(r => { if (!r.ok) throw new Error(`FAQ HTTP ${r.status}`); return r.json(); })
-    .then(data => {
-      FAQ_DATA = Array.isArray(data) ? data :
-        Array.isArray(data.faq) ? data.faq :
-        Array.isArray(data.questions) ? data.questions : [];
-      FAQ_READY = true;
-      console.log(`AI Cẩm Trung: đã tải ${FAQ_DATA.length} FAQ.`);
-      return FAQ_DATA;
-    })
-    .catch(err => {
-      console.warn("Không tải được faq.json:", err);
-      FAQ_DATA = []; FAQ_READY = false; return [];
-    });
+async function loadFAQ() {
+  try {
+    const r = await fetch(FAQ_CONFIG.url, { cache: "no-store" });
+    if (!r.ok) throw new Error(`FAQ HTTP ${r.status}`);
+    const data = await r.json();
+    FAQ_DATA = Array.isArray(data) ? data :
+      Array.isArray(data.faq) ? data.faq :
+      Array.isArray(data.questions) ? data.questions : [];
+    FAQ_READY = true;
+    console.log(`AI Cẩm Trung: đã tải ${FAQ_DATA.length} FAQ.`);
+  } catch (e) {
+    console.warn("Chưa tải được faq.json. Website vẫn có thể dùng AI:", e);
+    FAQ_DATA = [];
+    FAQ_READY = false;
+  }
 }
 
 function faqScore(question, item) {
@@ -41,13 +97,16 @@ function faqScore(question, item) {
   const qt = normalizeText(item.question || item.q || item.title || "");
   const keys = Array.isArray(item.keywords) ? item.keywords.map(normalizeText) : [];
   if (!qt) return 0;
+
   let score = q === qt ? 100 : 0;
   if (q.includes(qt) || qt.includes(q)) score += 60;
+
   const qw = new Set(q.split(" ").filter(x => x.length >= 2));
   const tw = new Set(qt.split(" ").filter(x => x.length >= 2));
-  for (const w of qw) {
-    if (tw.has(w)) score += 5;
-    if (keys.some(k => k.includes(w) || w.includes(k))) score += 4;
+
+  for (const word of qw) {
+    if (tw.has(word)) score += 5;
+    if (keys.some(k => k.includes(word) || word.includes(k))) score += 4;
   }
   return score;
 }
@@ -57,9 +116,12 @@ function findBestFAQ(question) {
   let best = null, bestScore = 0;
   for (const item of FAQ_DATA) {
     const score = faqScore(question, item);
-    if (score > bestScore) { best = item; bestScore = score; }
+    if (score > bestScore) {
+      best = item;
+      bestScore = score;
+    }
   }
-  return best && bestScore >= 35 ? { item: best, score: bestScore } : null;
+  return best && bestScore >= 35 ? best : null;
 }
 
 function faqAnswer(item) {
@@ -74,25 +136,29 @@ function faqFollowups(item) {
 function detectCategory(question) {
   const q = normalizeText(question);
   const groups = [
-    ["thủ tục hành chính", ["thu tuc","ho so","dich vu cong","nop ho so","ket qua"]],
-    ["hộ tịch", ["khai sinh","khai tu","ket hon","ho tich","tinh trang hon nhan"]],
-    ["đất đai", ["dat dai","so do","giay chung nhan","chuyen nhuong dat","cap dat"]],
-    ["chính sách xã hội", ["bao tro","nguoi co cong","ho ngheo","tro cap","chinh sach"]],
-    ["giáo dục", ["truong hoc","hoc sinh","giao vien","tuyen sinh","mam non","tieu hoc","thcs"]],
-    ["y tế", ["tram y te","y te","bao hiem y te","kham benh","tiem chung"]],
-    ["chuyển đổi số", ["chuyen doi so","i-ha tinh","vneid","binh dan hoc vu so","cong nghe"]],
-    ["doanh nghiệp", ["doanh nghiep","kinh doanh","ho kinh doanh","dang ky kinh doanh"]],
-    ["nông nghiệp", ["nong nghiep","chan nuoi","trong trot","nong dan","vat nuoi"]],
-    ["phản ánh, kiến nghị", ["phan anh","kien nghi","phan anh hien truong","gop y"]]
+    ["Thủ tục hành chính", ["thu tuc", "ho so", "dich vu cong", "nop ho so", "ket qua"]],
+    ["Hộ tịch", ["khai sinh", "khai tu", "ket hon", "ho tich", "tinh trang hon nhan"]],
+    ["Đất đai", ["dat dai", "so do", "giay chung nhan", "chuyen nhuong dat", "cap dat"]],
+    ["Chính sách xã hội", ["bao tro", "nguoi co cong", "ho ngheo", "tro cap", "chinh sach"]],
+    ["Giáo dục", ["truong hoc", "hoc sinh", "giao vien", "tuyen sinh", "mam non", "tieu hoc", "thcs"]],
+    ["Y tế", ["tram y te", "y te", "bao hiem y te", "kham benh", "tiem chung"]],
+    ["Chuyển đổi số", ["chuyen doi so", "i ha tinh", "i-hatinh", "vneid", "binh dan hoc vu so"]],
+    ["Doanh nghiệp", ["doanh nghiep", "kinh doanh", "ho kinh doanh", "dang ky kinh doanh"]],
+    ["Nông nghiệp", ["nong nghiep", "chan nuoi", "trong trot", "nong dan"]],
+    ["Phản ánh, kiến nghị", ["phan anh", "kien nghi", "phan anh hien truong", "gop y"]]
   ];
-  for (const [cat, keys] of groups) if (keys.some(k => q.includes(k))) return cat;
-  return "chung";
+  for (const [category, keys] of groups) {
+    if (keys.some(k => q.includes(normalizeText(k)))) return category;
+  }
+  return "Chung";
 }
 
 async function callAI(question, extra = {}) {
   if (!AI_CONFIG.enabled) throw new Error("AI đang tắt.");
+
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), AI_CONFIG.timeout);
+
   try {
     const response = await fetch(AI_CONFIG.endpoint, {
       method: "POST",
@@ -106,84 +172,153 @@ async function callAI(question, extra = {}) {
       }),
       signal: controller.signal
     });
+
     const raw = await response.text();
     let data;
-    try { data = JSON.parse(raw); }
-    catch { throw new Error(`Worker trả về dữ liệu không hợp lệ: ${raw.slice(0, 300)}`); }
-    if (!response.ok || data.error) throw new Error(data.error || `Worker HTTP ${response.status}`);
+    try {
+      data = JSON.parse(raw);
+    } catch {
+      throw new Error(`Worker trả về dữ liệu không hợp lệ: ${raw.slice(0, 200)}`);
+    }
+
+    if (!response.ok || data.error) {
+      throw new Error(data.error || `Worker HTTP ${response.status}`);
+    }
+
     return {
       answer: data.answer || data.message || data.response || "Xin lỗi, tôi chưa có câu trả lời phù hợp.",
-      category: data.category || "",
-      intent: data.intent || "",
+      category: data.category || extra.category || "Chung",
       followups: Array.isArray(data.followups) ? data.followups.slice(0, 3) : []
     };
-  } finally { clearTimeout(timer); }
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function findInput() {
-  return document.querySelector("#user-input, #userInput, #question, textarea[name='question'], textarea, input[type='text']");
-}
-
-function findSendButton() {
-  return document.querySelector("#send-btn, #sendButton, #send-button, [data-action='send'], button[type='submit']");
+  return document.querySelector("#user-input");
 }
 
 function findMessagesContainer() {
-  return document.querySelector("#chat-messages, #messages, #chatMessages, .chat-messages, .messages, .chat-box");
+  return document.querySelector("#chat-messages");
 }
 
 function appendMessage(text, type = "bot", followups = []) {
   const container = findMessagesContainer();
-  if (!container) { console.log(type === "user" ? "Bạn:" : "AI Cẩm Trung:", text); return; }
+  if (!container) return;
 
   const wrapper = document.createElement("div");
-  wrapper.className = `message ${type}-message ai-message`;
+  wrapper.className = `message ${type}-message`;
+
+  if (type === "bot") {
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.textContent = "AI";
+    wrapper.appendChild(avatar);
+  }
+
+  const bubble = document.createElement("div");
+  bubble.className = "bubble";
+
+  if (type === "bot") {
+    const name = document.createElement("div");
+    name.className = "message-name";
+    name.textContent = "AI Cẩm Trung";
+    bubble.appendChild(name);
+  }
+
   const content = document.createElement("div");
   content.className = "message-content";
   content.textContent = text;
-  wrapper.appendChild(content);
+  bubble.appendChild(content);
 
   if (followups.length) {
     const box = document.createElement("div");
     box.className = "followup-suggestions";
+
     followups.forEach(q => {
-      const b = document.createElement("button");
-      b.type = "button"; b.className = "followup-btn"; b.textContent = q;
-      b.addEventListener("click", () => {
-        const input = findInput();
-        if (input) { input.value = q; input.focus(); }
-        sendQuestion(q);
-      });
-      box.appendChild(b);
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "followup-btn";
+      btn.textContent = q;
+      btn.addEventListener("click", () => sendQuestion(q));
+      box.appendChild(btn);
     });
-    wrapper.appendChild(box);
+
+    bubble.appendChild(box);
   }
+
+  wrapper.appendChild(bubble);
   container.appendChild(wrapper);
   container.scrollTop = container.scrollHeight;
 }
 
 function setLoading(on) {
-  const button = findSendButton();
+  const button = document.querySelector("#send-btn");
   if (button) {
     button.disabled = on;
-    if (!button.dataset.originalText) button.dataset.originalText = button.textContent;
-    button.textContent = on ? "Đang trả lời..." : button.dataset.originalText;
+    button.querySelector("span:first-child").textContent = on ? "Đang trả lời..." : "Gửi";
   }
+
   const container = findMessagesContainer();
   if (!container) return;
+
   const old = container.querySelector(".ai-loading-message");
+
   if (on && !old) {
-    const el = document.createElement("div");
-    el.className = "message bot-message ai-loading-message";
-    el.textContent = "AI Cẩm Trung đang tra cứu...";
-    container.appendChild(el);
+    const wrapper = document.createElement("div");
+    wrapper.className = "message bot-message ai-loading-message";
+
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.textContent = "AI";
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+
+    const content = document.createElement("div");
+    content.className = "message-content";
+    content.textContent = "AI Cẩm Trung đang tra cứu...";
+
+    bubble.appendChild(content);
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(bubble);
+    container.appendChild(wrapper);
     container.scrollTop = container.scrollHeight;
-  } else if (!on && old) old.remove();
+  }
+
+  if (!on && old) old.remove();
+}
+
+function updateSuggestions(category) {
+  const box = document.querySelector("#suggestions");
+  if (!box) return;
+
+  const list = CATEGORY_SUGGESTIONS[category] || [
+    "Tôi muốn đăng ký khai sinh cho con thì cần làm gì?",
+    "Tôi muốn thực hiện thủ tục hành chính trực tuyến thì làm thế nào?",
+    "Tôi muốn gửi phản ánh, kiến nghị đến địa phương thì làm thế nào?",
+    "Tôi muốn sử dụng ứng dụng i-Hà Tĩnh thì làm thế nào?"
+  ];
+
+  box.replaceChildren();
+
+  list.slice(0, 4).forEach(question => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "suggestion";
+    btn.textContent = question;
+    btn.addEventListener("click", () => sendQuestion(question));
+    box.appendChild(btn);
+  });
 }
 
 async function sendQuestion(rawQuestion) {
   const input = findInput();
-  const question = typeof rawQuestion === "string" ? rawQuestion.trim() : (input?.value || "").trim();
+  const question = typeof rawQuestion === "string"
+    ? rawQuestion.trim()
+    : (input?.value || "").trim();
+
   if (!question) return;
   if (input) input.value = "";
 
@@ -191,24 +326,33 @@ async function sendQuestion(rawQuestion) {
   setLoading(true);
 
   try {
+    const category = detectCategory(question);
+    updateSuggestions(category);
+
     const matched = findBestFAQ(question);
+
     if (matched) {
-      const answer = faqAnswer(matched.item);
+      const answer = faqAnswer(matched);
       if (answer) {
-        appendMessage(answer, "bot", faqFollowups(matched.item));
+        appendMessage(answer, "bot", faqFollowups(matched));
         return;
       }
     }
 
     const result = await callAI(question, {
-      category: detectCategory(question),
+      category,
       intent: "tra_cuu"
     });
-    appendMessage(result.answer, "bot", result.followups);
-  } catch (err) {
-    console.error("AI Cẩm Trung error:", err);
+
     appendMessage(
-      "Xin lỗi, hệ thống AI Cẩm Trung hiện chưa kết nối được. Anh/chị vui lòng thử lại sau hoặc liên hệ UBND xã Cẩm Trung để được hỗ trợ.",
+      result.answer,
+      "bot",
+      result.followups.length ? result.followups : (CATEGORY_SUGGESTIONS[category] || []).slice(0, 3)
+    );
+  } catch (error) {
+    console.error("AI Cẩm Trung:", error);
+    appendMessage(
+      "Xin lỗi, hiện tôi chưa kết nối được với hệ thống AI. Anh/chị vui lòng thử lại sau. Nếu cần hỗ trợ về hồ sơ cụ thể, vui lòng liên hệ cơ quan có thẩm quyền.",
       "bot"
     );
   } finally {
@@ -216,31 +360,60 @@ async function sendQuestion(rawQuestion) {
   }
 }
 
-function initChatbot() {
+function init() {
   loadFAQ();
 
+  const form = document.querySelector("#chat-form");
   const input = findInput();
-  const button = findSendButton();
 
-  if (button) button.addEventListener("click", e => { e.preventDefault(); sendQuestion(); });
-  if (input) input.addEventListener("keydown", e => {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendQuestion(); }
+  if (form) {
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      sendQuestion();
+    });
+  }
+
+  if (input) {
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendQuestion();
+      }
+    });
+  }
+
+  document.querySelectorAll(".suggestion").forEach(btn => {
+    btn.addEventListener("click", () => sendQuestion(btn.dataset.question || btn.textContent));
   });
 
-  document.querySelectorAll("[data-question]").forEach(el => {
-    el.addEventListener("click", () => {
-      const q = el.getAttribute("data-question");
-      if (q) sendQuestion(q);
+  document.querySelectorAll(".category").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".category").forEach(x => x.classList.remove("active"));
+      btn.classList.add("active");
+
+      const category = btn.dataset.category;
+      if (category === "Tất cả") {
+        updateSuggestions("Chung");
+      } else {
+        updateSuggestions(category);
+        const note = document.querySelector("#category-note");
+        if (note) {
+          note.hidden = false;
+          note.textContent = `Đang hỗ trợ lĩnh vực: ${category}`;
+        }
+      }
     });
   });
 
-  console.log("AI Cẩm Trung V2.0 đã khởi tạo.");
-  console.log("Worker:", AI_CONFIG.endpoint);
+  console.log("AI Cẩm Trung V2.0 frontend đã khởi tạo.");
+  console.log("Cloudflare Worker:", AI_CONFIG.endpoint);
 }
 
 window.sendQuestion = sendQuestion;
-window.askAI = sendQuestion;
-window.AICamTrung = { config: AI_CONFIG, loadFAQ, callAI, sendQuestion, findBestFAQ };
+window.AICamTrung = { config: AI_CONFIG, callAI, loadFAQ, sendQuestion };
 
-if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initChatbot);
-else initChatbot();
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
