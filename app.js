@@ -1,13 +1,18 @@
 /* =========================================================
-   AI CẨM TRUNG V2.3 — app.js
-   GitHub Pages -> Cloudflare Worker -> Workers AI
+   AI CẨM TRUNG V2.3.1 — app.js
+   GitHub Pages -> Cloudflare Worker V2.2 -> Workers AI
 
-   V2.3:
-   - Giữ nguyên FAQ-first
-   - Kết nối Worker V2.2
-   - Nhận dữ liệu procedure từ Worker
-   - Hiển thị nút Cổng Dịch vụ công Quốc gia
-   - Không hiển thị URL TTHC dài trong nội dung chat
+   LUỒNG XỬ LÝ:
+   1. Nhận diện câu hỏi có khả năng là TTHC
+   2. Nếu là TTHC -> Worker V2.2 xử lý trước
+   3. Nếu không phải TTHC -> FAQ
+   4. Nếu FAQ không có -> Worker -> Workers AI
+
+   TÍNH NĂNG:
+   - TTHC ưu tiên trước FAQ
+   - Nhận procedure từ Worker
+   - Hiển thị nút Cổng DVC Quốc gia
+   - Ẩn URL dài trong nội dung chat
    - Không chứa API key
    ========================================================= */
 
@@ -30,6 +35,7 @@ let FAQ_READY = false;
    ========================================================= */
 
 const CATEGORY_SUGGESTIONS = {
+
   "Thủ tục hành chính": [
     "Tôi muốn thực hiện thủ tục hành chính trực tuyến thì làm thế nào?",
     "Tôi muốn tra cứu tình trạng hồ sơ của mình.",
@@ -38,7 +44,7 @@ const CATEGORY_SUGGESTIONS = {
 
   "Hộ tịch": [
     "Tôi muốn đăng ký khai sinh cho con thì cần làm gì?",
-    "Đăng ký kết hôn cần chuẩn bị giấy tờ gì?",
+    "Tôi muốn đăng ký kết hôn.",
     "Tôi muốn xin giấy xác nhận tình trạng hôn nhân."
   ],
 
@@ -97,6 +103,7 @@ const CATEGORY_SUGGESTIONS = {
    ========================================================= */
 
 function normalizeText(text = "") {
+
   return String(text)
     .toLowerCase()
     .normalize("NFD")
@@ -109,25 +116,110 @@ function normalizeText(text = "") {
 
 
 /* =========================================================
+   NHẬN DIỆN CÂU HỎI TTHC
+
+   Mục đích:
+   Nếu câu hỏi có khả năng liên quan TTHC,
+   gửi thẳng sang Worker V2.2 trước FAQ.
+
+   Worker mới là nơi quyết định:
+   - TTHC đã xác minh
+   - TTHC chưa có dữ liệu
+   - Administrative Guard
+   ========================================================= */
+
+function isLikelyAdministrativeQuestion(question) {
+
+  const q = normalizeText(question);
+
+  const administrativeKeywords = [
+
+    /* Chung */
+
+    "thu tuc",
+    "thu tuc hanh chinh",
+    "ho so",
+    "nop ho so",
+    "nop truc tuyen",
+    "dich vu cong",
+    "cap lai",
+    "xin cap",
+    "dang ky",
+    "giay to",
+    "le phi",
+    "phi bao nhieu",
+    "thoi han",
+    "bao lau",
+    "tra cuu ho so",
+
+    /* Hộ tịch */
+
+    "khai sinh",
+    "giay khai sinh",
+    "khai tu",
+    "giay khai tu",
+    "ket hon",
+    "dang ky ket hon",
+    "giay ket hon",
+    "ho tich",
+    "tinh trang hon nhan",
+    "giay doc than",
+    "xac nhan doc than",
+    "cai chinh ho tich",
+    "dang ky lai khai sinh",
+
+    /* Chứng thực */
+
+    "chung thuc",
+    "chung thuc ban sao",
+    "chung thuc chu ky",
+    "sao y",
+
+    /* Hộ kinh doanh */
+
+    "ho kinh doanh",
+    "dang ky kinh doanh",
+    "thanh lap ho kinh doanh",
+    "tam ngung kinh doanh",
+    "cham dut ho kinh doanh",
+
+    /* Chính sách */
+
+    "tro cap",
+    "bao tro xa hoi",
+    "mai tang phi",
+    "nguoi co cong"
+  ];
+
+  return administrativeKeywords.some(
+    keyword => q.includes(keyword)
+  );
+}
+
+
+/* =========================================================
    TẢI FAQ
    ========================================================= */
 
 async function loadFAQ() {
+
   try {
-    const r = await fetch(
+
+    const response = await fetch(
       FAQ_CONFIG.url,
       {
         cache: "no-store"
       }
     );
 
-    if (!r.ok) {
+    if (!response.ok) {
+
       throw new Error(
-        `FAQ HTTP ${r.status}`
+        `FAQ HTTP ${response.status}`
       );
     }
 
-    const data = await r.json();
+    const data = await response.json();
 
     FAQ_DATA =
       Array.isArray(data)
@@ -144,11 +236,11 @@ async function loadFAQ() {
       `AI Cẩm Trung: đã tải ${FAQ_DATA.length} FAQ.`
     );
 
-  } catch (e) {
+  } catch (error) {
 
     console.warn(
       "Chưa tải được faq.json. Website vẫn có thể dùng AI:",
-      e
+      error
     );
 
     FAQ_DATA = [];
@@ -163,16 +255,14 @@ async function loadFAQ() {
 
 function faqScore(question, item) {
 
-  const q =
-    normalizeText(question);
+  const q = normalizeText(question);
 
-  const qt =
-    normalizeText(
-      item.question ||
-      item.q ||
-      item.title ||
-      ""
-    );
+  const qt = normalizeText(
+    item.question ||
+    item.q ||
+    item.title ||
+    ""
+  );
 
   const keys =
     Array.isArray(item.keywords)
@@ -195,31 +285,33 @@ function faqScore(question, item) {
     score += 60;
   }
 
-  const qw =
-    new Set(
-      q
-        .split(" ")
-        .filter(x => x.length >= 2)
-    );
+  const questionWords = new Set(
+    q
+      .split(" ")
+      .filter(
+        word => word.length >= 2
+      )
+  );
 
-  const tw =
-    new Set(
-      qt
-        .split(" ")
-        .filter(x => x.length >= 2)
-    );
+  const targetWords = new Set(
+    qt
+      .split(" ")
+      .filter(
+        word => word.length >= 2
+      )
+  );
 
-  for (const word of qw) {
+  for (const word of questionWords) {
 
-    if (tw.has(word)) {
+    if (targetWords.has(word)) {
       score += 5;
     }
 
     if (
       keys.some(
-        k =>
-          k.includes(word) ||
-          word.includes(k)
+        key =>
+          key.includes(word) ||
+          word.includes(key)
       )
     ) {
       score += 4;
@@ -245,11 +337,10 @@ function findBestFAQ(question) {
 
   for (const item of FAQ_DATA) {
 
-    const score =
-      faqScore(
-        question,
-        item
-      );
+    const score = faqScore(
+      question,
+      item
+    );
 
     if (score > bestScore) {
 
@@ -289,14 +380,14 @@ function faqAnswer(item) {
 
 function faqFollowups(item) {
 
-  const v =
+  const suggestions =
     item.followups ||
     item.suggestions ||
     item.related_questions ||
     [];
 
-  return Array.isArray(v)
-    ? v.slice(0, 3)
+  return Array.isArray(suggestions)
+    ? suggestions.slice(0, 3)
     : [];
 }
 
@@ -307,21 +398,9 @@ function faqFollowups(item) {
 
 function detectCategory(question) {
 
-  const q =
-    normalizeText(question);
+  const q = normalizeText(question);
 
   const groups = [
-
-    [
-      "Thủ tục hành chính",
-      [
-        "thu tuc",
-        "ho so",
-        "dich vu cong",
-        "nop ho so",
-        "ket qua"
-      ]
-    ],
 
     [
       "Hộ tịch",
@@ -330,7 +409,8 @@ function detectCategory(question) {
         "khai tu",
         "ket hon",
         "ho tich",
-        "tinh trang hon nhan"
+        "tinh trang hon nhan",
+        "giay doc than"
       ]
     ],
 
@@ -419,22 +499,34 @@ function detectCategory(question) {
         "phan anh hien truong",
         "gop y"
       ]
+    ],
+
+    [
+      "Thủ tục hành chính",
+      [
+        "thu tuc",
+        "ho so",
+        "dich vu cong",
+        "nop ho so",
+        "ket qua"
+      ]
     ]
   ];
 
   for (
-    const [category, keys]
+    const [category, keywords]
     of groups
   ) {
 
     if (
-      keys.some(
-        k =>
+      keywords.some(
+        keyword =>
           q.includes(
-            normalizeText(k)
+            normalizeText(keyword)
           )
       )
     ) {
+
       return category;
     }
   }
@@ -453,6 +545,7 @@ async function callAI(
 ) {
 
   if (!AI_CONFIG.enabled) {
+
     throw new Error(
       "AI đang tắt."
     );
@@ -480,28 +573,26 @@ async function callAI(
               "application/json"
           },
 
-          body:
-            JSON.stringify({
-              question,
+          body: JSON.stringify({
 
-              category:
-                extra.category ||
-                detectCategory(
-                  question
-                ),
+            question,
 
-              intent:
-                extra.intent ||
-                "tra_cuu",
+            category:
+              extra.category ||
+              detectCategory(question),
 
-              context:
-                extra.context ||
-                "",
+            intent:
+              extra.intent ||
+              "tra_cuu",
 
-              faq:
-                extra.faq ||
-                ""
-            }),
+            context:
+              extra.context ||
+              "",
+
+            faq:
+              extra.faq ||
+              ""
+          }),
 
           signal:
             controller.signal
@@ -536,13 +627,6 @@ async function callAI(
       );
     }
 
-    /*
-       V2.3:
-       Nhận thêm source,
-       intent và procedure
-       từ Worker V2.2.
-    */
-
     return {
 
       answer:
@@ -573,7 +657,11 @@ async function callAI(
 
       procedure:
         data.procedure ||
-        null
+        null,
+
+      version:
+        data.version ||
+        ""
     };
 
   } finally {
@@ -608,11 +696,10 @@ function findMessagesContainer() {
 
 
 /* =========================================================
-   LÀM SẠCH NỘI DUNG TTHC
+   LÀM SẠCH CÂU TRẢ LỜI TTHC
 
-   Worker V2.2 hiện có thể đưa URL vào answer.
-   V2.3 sẽ loại bỏ URL dài đó khỏi khung chat
-   vì đã có nút riêng.
+   Worker V2.2 có thể đang trả URL trong answer.
+   Frontend V2.3.1 sẽ loại URL đó và thay bằng nút.
    ========================================================= */
 
 function cleanProcedureAnswer(
@@ -624,7 +711,10 @@ function cleanProcedureAnswer(
     !procedure ||
     !procedure.url
   ) {
-    return text;
+
+    return String(
+      text || ""
+    );
   }
 
   const url =
@@ -637,40 +727,50 @@ function cleanProcedureAnswer(
       text || ""
     );
 
-  /*
-     Xóa dòng dạng:
-     Xem thủ tục: https://...
-  */
-
   result =
     result
       .split("\n")
-      .filter(line => {
+      .filter(
+        line => {
 
-        const trimmed =
-          line.trim();
+          const trimmed =
+            line.trim();
 
-        if (
-          trimmed.startsWith(
-            "Xem thủ tục:"
-          )
-        ) {
-          return false;
+          /*
+             Xóa:
+             Xem thủ tục: https://...
+          */
+
+          if (
+            trimmed
+              .toLowerCase()
+              .startsWith(
+                "xem thủ tục:"
+              )
+          ) {
+
+            return false;
+          }
+
+          /*
+             Xóa dòng chỉ chứa URL.
+          */
+
+          if (
+            trimmed === url
+          ) {
+
+            return false;
+          }
+
+          return true;
         }
-
-        if (
-          trimmed === url
-        ) {
-          return false;
-        }
-
-        return true;
-      })
+      )
       .join("\n");
 
   /*
-     Trường hợp URL xuất hiện
-     riêng trong nội dung.
+     Nếu URL vẫn xuất hiện
+     trong nội dung thì xóa.
   */
 
   if (url) {
@@ -682,7 +782,7 @@ function cleanProcedureAnswer(
   }
 
   /*
-     Xóa khoảng trắng thừa.
+     Thu gọn dòng trống.
   */
 
   result =
@@ -700,8 +800,9 @@ function cleanProcedureAnswer(
 /* =========================================================
    KIỂM TRA URL CỔNG DVC
 
-   Chỉ tạo nút khi Worker trả về URL HTTPS
-   thuộc dichvucong.gov.vn.
+   Chỉ cho phép nút trỏ đến:
+   dichvucong.gov.vn
+   hoặc tên miền con của nó.
    ========================================================= */
 
 function isOfficialDvcUrl(url) {
@@ -715,18 +816,17 @@ function isOfficialDvcUrl(url) {
     const parsed =
       new URL(url);
 
-    const host =
+    const hostname =
       parsed.hostname
         .toLowerCase();
 
     return (
-      parsed.protocol ===
-        "https:" &&
+      parsed.protocol === "https:" &&
       (
-        host ===
+        hostname ===
           "dichvucong.gov.vn" ||
 
-        host.endsWith(
+        hostname.endsWith(
           ".dichvucong.gov.vn"
         )
       )
@@ -753,6 +853,7 @@ function createDvcButton(
       procedure.url
     )
   ) {
+
     return null;
   }
 
@@ -764,14 +865,9 @@ function createDvcButton(
   actionBox.className =
     "tthc-action-box";
 
-  /*
-     Có style dự phòng để nút
-     hiển thị đẹp ngay cả khi
-     chưa sửa style.css.
-  */
-
   actionBox.style.marginTop =
     "12px";
+
 
   const link =
     document.createElement(
@@ -793,10 +889,12 @@ function createDvcButton(
   link.textContent =
     "🔎 Xem thủ tục trên Cổng Dịch vụ công Quốc gia";
 
+
   /*
-     Style dự phòng.
-     Sau này có thể chuyển toàn bộ
-     sang style.css.
+     STYLE DỰ PHÒNG
+
+     Không cần sửa style.css
+     ngay ở phiên bản này.
   */
 
   link.style.display =
@@ -835,6 +933,10 @@ function createDvcButton(
   link.style.boxSizing =
     "border-box";
 
+  link.style.textAlign =
+    "center";
+
+
   actionBox.appendChild(
     link
   );
@@ -861,6 +963,7 @@ function appendMessage(
     return;
   }
 
+
   const wrapper =
     document.createElement(
       "div"
@@ -869,9 +972,10 @@ function appendMessage(
   wrapper.className =
     `message ${type}-message`;
 
-  /*
+
+  /* -------------------------
      Avatar AI
-  */
+     ------------------------- */
 
   if (
     type === "bot"
@@ -893,9 +997,10 @@ function appendMessage(
     );
   }
 
-  /*
+
+  /* -------------------------
      Bong bóng chat
-  */
+     ------------------------- */
 
   const bubble =
     document.createElement(
@@ -905,9 +1010,10 @@ function appendMessage(
   bubble.className =
     "bubble";
 
-  /*
+
+  /* -------------------------
      Tên AI
-  */
+     ------------------------- */
 
   if (
     type === "bot"
@@ -929,9 +1035,10 @@ function appendMessage(
     );
   }
 
-  /*
+
+  /* -------------------------
      Nội dung
-  */
+     ------------------------- */
 
   const content =
     document.createElement(
@@ -941,12 +1048,16 @@ function appendMessage(
   content.className =
     "message-content";
 
+
   let displayText =
-    text;
+    String(
+      text || ""
+    );
+
 
   /*
-     Nếu là TTHC:
-     loại URL dài khỏi câu trả lời.
+     Nếu có procedure:
+     xóa URL dài khỏi nội dung.
   */
 
   if (
@@ -956,14 +1067,15 @@ function appendMessage(
 
     displayText =
       cleanProcedureAnswer(
-        text,
+        displayText,
         procedure
       );
   }
 
+
   /*
-     Dùng textContent để tránh
-     chèn HTML không an toàn.
+     Dùng textContent
+     để tránh chèn HTML không an toàn.
   */
 
   content.textContent =
@@ -973,11 +1085,10 @@ function appendMessage(
     content
   );
 
-  /*
-     Nếu Worker trả về TTHC
-     có URL chính thức:
-     tạo nút Cổng DVC.
-  */
+
+  /* -------------------------
+     Nút Cổng DVC
+     ------------------------- */
 
   if (
     type === "bot" &&
@@ -997,9 +1108,10 @@ function appendMessage(
     }
   }
 
-  /*
+
+  /* -------------------------
      Câu hỏi gợi ý
-  */
+     ------------------------- */
 
   if (
     Array.isArray(
@@ -1016,37 +1128,44 @@ function appendMessage(
     box.className =
       "followup-suggestions";
 
-    followups.forEach(q => {
 
-      const btn =
-        document.createElement(
-          "button"
+    followups.forEach(
+      question => {
+
+        const btn =
+          document.createElement(
+            "button"
+          );
+
+        btn.type =
+          "button";
+
+        btn.className =
+          "followup-btn";
+
+        btn.textContent =
+          question;
+
+        btn.addEventListener(
+          "click",
+          () =>
+            sendQuestion(
+              question
+            )
         );
 
-      btn.type =
-        "button";
+        box.appendChild(
+          btn
+        );
+      }
+    );
 
-      btn.className =
-        "followup-btn";
-
-      btn.textContent =
-        q;
-
-      btn.addEventListener(
-        "click",
-        () =>
-          sendQuestion(q)
-      );
-
-      box.appendChild(
-        btn
-      );
-    });
 
     bubble.appendChild(
       box
     );
   }
+
 
   wrapper.appendChild(
     bubble
@@ -1062,6 +1181,42 @@ function appendMessage(
 
 
 /* =========================================================
+   HIỂN THỊ KẾT QUẢ WORKER
+
+   Dùng chung cho:
+   - TTHC
+   - Administrative Guard
+   - AI
+   ========================================================= */
+
+function showWorkerResult(
+  result,
+  category
+) {
+
+  const followups =
+    result.followups.length
+
+      ? result.followups
+
+      : (
+          CATEGORY_SUGGESTIONS[
+            category
+          ] ||
+          []
+        ).slice(0, 3);
+
+
+  appendMessage(
+    result.answer,
+    "bot",
+    followups,
+    result.procedure
+  );
+}
+
+
+/* =========================================================
    TRẠNG THÁI ĐANG TRA CỨU
    ========================================================= */
 
@@ -1071,6 +1226,7 @@ function setLoading(on) {
     document.querySelector(
       "#send-btn"
     );
+
 
   if (button) {
 
@@ -1091,6 +1247,7 @@ function setLoading(on) {
     }
   }
 
+
   const container =
     findMessagesContainer();
 
@@ -1098,10 +1255,12 @@ function setLoading(on) {
     return;
   }
 
+
   const old =
     container.querySelector(
       ".ai-loading-message"
     );
+
 
   if (
     on &&
@@ -1116,6 +1275,7 @@ function setLoading(on) {
     wrapper.className =
       "message bot-message ai-loading-message";
 
+
     const avatar =
       document.createElement(
         "div"
@@ -1127,6 +1287,7 @@ function setLoading(on) {
     avatar.textContent =
       "AI";
 
+
     const bubble =
       document.createElement(
         "div"
@@ -1134,6 +1295,7 @@ function setLoading(on) {
 
     bubble.className =
       "bubble";
+
 
     const content =
       document.createElement(
@@ -1145,6 +1307,7 @@ function setLoading(on) {
 
     content.textContent =
       "AI Cẩm Trung đang tra cứu...";
+
 
     bubble.appendChild(
       content
@@ -1166,6 +1329,7 @@ function setLoading(on) {
       container.scrollHeight;
   }
 
+
   if (
     !on &&
     old
@@ -1177,7 +1341,7 @@ function setLoading(on) {
 
 
 /* =========================================================
-   CẬP NHẬT CÂU HỎI GỢI Ý
+   CẬP NHẬT GỢI Ý CÂU HỎI
    ========================================================= */
 
 function updateSuggestions(
@@ -1193,6 +1357,7 @@ function updateSuggestions(
     return;
   }
 
+
   const list =
     CATEGORY_SUGGESTIONS[
       category
@@ -1207,7 +1372,9 @@ function updateSuggestions(
       "Tôi muốn sử dụng ứng dụng i-Hà Tĩnh thì làm thế nào?"
     ];
 
+
   box.replaceChildren();
+
 
   list
     .slice(0, 4)
@@ -1246,6 +1413,8 @@ function updateSuggestions(
 
 /* =========================================================
    GỬI CÂU HỎI
+
+   ĐÂY LÀ THAY ĐỔI QUAN TRỌNG CỦA V2.3.1
    ========================================================= */
 
 async function sendQuestion(
@@ -1254,6 +1423,7 @@ async function sendQuestion(
 
   const input =
     findInput();
+
 
   const question =
     typeof rawQuestion ===
@@ -1266,16 +1436,21 @@ async function sendQuestion(
           ""
         ).trim();
 
+
   if (!question) {
     return;
   }
 
+
   if (input) {
-    input.value = "";
+
+    input.value =
+      "";
   }
 
+
   /*
-     Hiển thị câu hỏi người dùng
+     Hiển thị câu hỏi người dân
   */
 
   appendMessage(
@@ -1283,7 +1458,9 @@ async function sendQuestion(
     "user"
   );
 
+
   setLoading(true);
+
 
   try {
 
@@ -1292,23 +1469,65 @@ async function sendQuestion(
         question
       );
 
+
     updateSuggestions(
       category
     );
 
-    /*
-       =================================================
-       BƯỚC 1 — FAQ
 
-       Giữ nguyên cơ chế FAQ-first
-       của phiên bản trước.
-       =================================================
-    */
+    /* =====================================================
+       BƯỚC 1
+
+       KIỂM TRA CÓ KHẢ NĂNG LÀ TTHC KHÔNG?
+
+       Nếu CÓ:
+       bỏ qua FAQ và chuyển thẳng Worker V2.2.
+       ===================================================== */
+
+    if (
+      isLikelyAdministrativeQuestion(
+        question
+      )
+    ) {
+
+      console.log(
+        "AI Cẩm Trung: ưu tiên kiểm tra TTHC."
+      );
+
+
+      const result =
+        await callAI(
+          question,
+          {
+            category,
+            intent:
+              "tthc_lookup"
+          }
+        );
+
+
+      showWorkerResult(
+        result,
+        category
+      );
+
+
+      return;
+    }
+
+
+    /* =====================================================
+       BƯỚC 2
+
+       KHÔNG CÓ DẤU HIỆU TTHC
+       -> KIỂM TRA FAQ
+       ===================================================== */
 
     const matched =
       findBestFAQ(
         question
       );
+
 
     if (matched) {
 
@@ -1317,7 +1536,13 @@ async function sendQuestion(
           matched
         );
 
+
       if (answer) {
+
+        console.log(
+          "AI Cẩm Trung: trả lời từ FAQ."
+        );
+
 
         appendMessage(
           answer,
@@ -1327,20 +1552,23 @@ async function sendQuestion(
           )
         );
 
+
         return;
       }
     }
 
-    /*
-       =================================================
-       BƯỚC 2 — WORKER V2.2
 
-       Worker sẽ:
-       - tìm TTHC
-       - Administrative Guard
-       - hoặc gọi Workers AI
-       =================================================
-    */
+    /* =====================================================
+       BƯỚC 3
+
+       FAQ KHÔNG CÓ
+       -> GỌI WORKER / WORKERS AI
+       ===================================================== */
+
+    console.log(
+      "AI Cẩm Trung: chuyển câu hỏi sang Worker."
+    );
+
 
     const result =
       await callAI(
@@ -1352,31 +1580,12 @@ async function sendQuestion(
         }
       );
 
-    /*
-       V2.3:
-       truyền result.procedure
-       vào appendMessage().
-    */
 
-    appendMessage(
-
-      result.answer,
-
-      "bot",
-
-      result.followups.length
-
-        ? result.followups
-
-        : (
-            CATEGORY_SUGGESTIONS[
-              category
-            ] ||
-            []
-          ).slice(0, 3),
-
-      result.procedure
+    showWorkerResult(
+      result,
+      category
     );
+
 
   } catch (error) {
 
@@ -1385,12 +1594,14 @@ async function sendQuestion(
       error
     );
 
+
     appendMessage(
 
       "Xin lỗi, hiện tôi chưa kết nối được với hệ thống AI. Anh/chị vui lòng thử lại sau. Nếu cần hỗ trợ về hồ sơ cụ thể, vui lòng liên hệ cơ quan có thẩm quyền.",
 
       "bot"
     );
+
 
   } finally {
 
@@ -1411,48 +1622,53 @@ function init() {
 
   loadFAQ();
 
+
   const form =
     document.querySelector(
       "#chat-form"
     );
 
+
   const input =
     findInput();
 
-  /*
-     Gửi bằng nút Gửi
-  */
+
+  /* -------------------------
+     Nút Gửi
+     ------------------------- */
 
   if (form) {
 
     form.addEventListener(
       "submit",
-      e => {
+      event => {
 
-        e.preventDefault();
+        event.preventDefault();
 
         sendQuestion();
       }
     );
   }
 
-  /*
+
+  /* -------------------------
      Enter để gửi
      Shift + Enter xuống dòng
-  */
+     ------------------------- */
 
   if (input) {
 
     input.addEventListener(
       "keydown",
-      e => {
+      event => {
 
         if (
-          e.key === "Enter" &&
-          !e.shiftKey
+          event.key ===
+            "Enter" &&
+          !event.shiftKey
         ) {
 
-          e.preventDefault();
+          event.preventDefault();
 
           sendQuestion();
         }
@@ -1460,10 +1676,11 @@ function init() {
     );
   }
 
-  /*
-     Gợi ý câu hỏi có sẵn
+
+  /* -------------------------
+     Câu hỏi gợi ý
      trong index.html
-  */
+     ------------------------- */
 
   document
     .querySelectorAll(
@@ -1483,9 +1700,10 @@ function init() {
       }
     );
 
-  /*
-     Các nút lĩnh vực
-  */
+
+  /* -------------------------
+     Các lĩnh vực
+     ------------------------- */
 
   document
     .querySelectorAll(
@@ -1503,18 +1721,21 @@ function init() {
                 ".category"
               )
               .forEach(
-                x =>
-                  x.classList.remove(
+                item =>
+                  item.classList.remove(
                     "active"
                   )
               );
+
 
             btn.classList.add(
               "active"
             );
 
+
             const category =
               btn.dataset.category;
+
 
             if (
               category ===
@@ -1531,10 +1752,12 @@ function init() {
                 category
               );
 
+
               const note =
                 document.querySelector(
                   "#category-note"
                 );
+
 
               if (note) {
 
@@ -1550,9 +1773,16 @@ function init() {
       }
     );
 
+
   console.log(
-    "AI Cẩm Trung V2.3 frontend đã khởi tạo."
+    "AI Cẩm Trung V2.3.1 frontend đã khởi tạo."
   );
+
+
+  console.log(
+    "Luồng xử lý: TTHC -> Worker | Không phải TTHC -> FAQ -> Worker."
+  );
+
 
   console.log(
     "Cloudflare Worker:",
@@ -1568,6 +1798,7 @@ function init() {
 window.sendQuestion =
   sendQuestion;
 
+
 window.AICamTrung = {
 
   config:
@@ -1577,7 +1808,11 @@ window.AICamTrung = {
 
   loadFAQ,
 
-  sendQuestion
+  sendQuestion,
+
+  detectCategory,
+
+  isLikelyAdministrativeQuestion
 };
 
 
