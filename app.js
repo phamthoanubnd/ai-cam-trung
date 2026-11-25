@@ -1,5 +1,5 @@
 /* =========================================================
-   AI CẨM TRUNG V2.3.1 — app.js
+   AI CẨM TRUNG V2.4 — app.js
    GitHub Pages -> Cloudflare Worker V2.2 -> Workers AI
 
    LUỒNG XỬ LÝ:
@@ -9,6 +9,8 @@
    4. Nếu FAQ không có -> Worker -> Workers AI
 
    TÍNH NĂNG:
+   - V2.4: sửa đường dẫn FAQ (data/faq.json)
+   - V2.4: nhớ thủ tục đang hỏi để trả lời câu hỏi nối tiếp
    - TTHC ưu tiên trước FAQ
    - Nhận procedure từ Worker
    - Hiển thị nút Cổng DVC Quốc gia
@@ -23,11 +25,61 @@ const AI_CONFIG = {
 };
 
 const FAQ_CONFIG = {
-  url: "./faq.json"
+  url: "./data/faq.json"
 };
 
 let FAQ_DATA = [];
 let FAQ_READY = false;
+
+
+/* =========================================================
+   NGỮ CẢNH HỘI THOẠI (V2.4)
+
+   Ghi nhớ thủ tục vừa tra cứu để hiểu các câu hỏi
+   nối tiếp như "Lệ phí bao nhiêu?", "Nộp ở đâu?".
+   ========================================================= */
+
+let LAST_PROCEDURE = null;
+
+function rememberProcedure(procedure) {
+
+  if (procedure && procedure.name) {
+    LAST_PROCEDURE = procedure;
+  }
+}
+
+function isFollowUpQuestion(question) {
+
+  if (!LAST_PROCEDURE) {
+    return false;
+  }
+
+  const q = " " + normalizeText(question) + " ";
+
+  /* Câu hỏi nêu tên thủ tục khác -> không phải hỏi tiếp */
+
+  const specificTopics = [
+    "khai sinh", "khai tu", "ket hon", "hon nhan", "doc than",
+    "ho tich", "chung thuc", "sao y", "kinh doanh", "doanh nghiep",
+    "tro cap", "bao tro", "mai tang", "nguoi co cong", "ho ngheo",
+    "dat dai", "so do", "quyen su dung dat", "xay dung",
+    "cu tru", "tam tru", "thuong tru", "can cuoc", "vneid"
+  ];
+
+  if (specificTopics.some(k => q.includes(" " + k + " "))) {
+    return false;
+  }
+
+  const followUpKeys = [
+    "le phi", "phi", "bao nhieu tien", "mat tien", "ho so",
+    "giay to", "thanh phan", "thoi han", "bao lau", "may ngay",
+    "nop o dau", "co quan", "truc tuyen", "online",
+    "can gi", "can mang", "mang theo", "thu tuc nay", "cach nop",
+    "cach thuc hien", "ket qua", "nop", "lam o dau"
+  ];
+
+  return followUpKeys.some(k => q.includes(" " + k + " "));
+}
 
 
 /* =========================================================
@@ -1484,31 +1536,68 @@ async function sendQuestion(
        bỏ qua FAQ và chuyển thẳng Worker V2.2.
        ===================================================== */
 
+    const followUp =
+      isFollowUpQuestion(
+        question
+      );
+
+
     if (
+      followUp ||
       isLikelyAdministrativeQuestion(
         question
       )
     ) {
 
       console.log(
-        "AI Cẩm Trung: ưu tiên kiểm tra TTHC."
+        followUp
+          ? "AI Cẩm Trung: câu hỏi nối tiếp về " + LAST_PROCEDURE.name
+          : "AI Cẩm Trung: ưu tiên kiểm tra TTHC."
       );
+
+
+      /*
+         V2.4: với câu hỏi nối tiếp, ghép tên thủ tục
+         đang hỏi vào câu gửi Worker (người dân vẫn thấy
+         câu hỏi gốc của mình).
+      */
+
+      const workerQuestion =
+        followUp
+          ? `${question} (thủ tục đang hỏi: ${LAST_PROCEDURE.name})`
+          : question;
+
+      const workerCategory =
+        followUp
+          ? (LAST_PROCEDURE.category || category)
+          : category;
 
 
       const result =
         await callAI(
-          question,
+          workerQuestion,
           {
-            category,
+            category: workerCategory,
             intent:
-              "tthc_lookup"
+              "tthc_lookup",
+            context:
+              followUp
+                ? `Người dân đang hỏi tiếp về: ${LAST_PROCEDURE.name} (mã ${LAST_PROCEDURE.code || ""})`
+                : ""
           }
         );
 
 
+      if (result.procedure) {
+        rememberProcedure(result.procedure);
+      } else if (!followUp) {
+        LAST_PROCEDURE = null;
+      }
+
+
       showWorkerResult(
         result,
-        category
+        workerCategory
       );
 
 
@@ -1543,6 +1632,8 @@ async function sendQuestion(
           "AI Cẩm Trung: trả lời từ FAQ."
         );
 
+        LAST_PROCEDURE = null;
+
 
         appendMessage(
           answer,
@@ -1568,6 +1659,8 @@ async function sendQuestion(
     console.log(
       "AI Cẩm Trung: chuyển câu hỏi sang Worker."
     );
+
+    LAST_PROCEDURE = null;
 
 
     const result =
@@ -1775,7 +1868,7 @@ function init() {
 
 
   console.log(
-    "AI Cẩm Trung V2.3.1 frontend đã khởi tạo."
+    "AI Cẩm Trung V2.4 frontend đã khởi tạo."
   );
 
 
@@ -1812,7 +1905,9 @@ window.AICamTrung = {
 
   detectCategory,
 
-  isLikelyAdministrativeQuestion
+  isLikelyAdministrativeQuestion,
+
+  isFollowUpQuestion
 };
 
 
